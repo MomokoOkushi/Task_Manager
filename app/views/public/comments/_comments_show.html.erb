@@ -7,9 +7,9 @@
         <% if admin_signed_in? %>
           <!--コメント内容の感情スコアを表示させる-->
           <% if comment_is_negative?(comment) %>
-            <i class="fa-solid fa-heart-circle-exclamation" style="color:orange;">(<%= comment.score %>)</i>
+            <i class="fa-solid fa-heart-circle-exclamation" style="color:orange;"></i>
           <% elsif comment_is_more_negative?(comment) %>
-            <i class="fa-solid fa-heart-crack" style="color:red;">(<%= comment.score %>)</i>
+            <i class="fa-solid fa-heart-crack" style="color:red;"></i>
           <% end %>
         <% end %>
         <br>
