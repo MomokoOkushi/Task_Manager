@@ -1,0 +1,2 @@
+class TaskUser < ApplicationRecord
+end
