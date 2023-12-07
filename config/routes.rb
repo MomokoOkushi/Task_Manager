@@ -1,8 +1,19 @@
 Rails.application.routes.draw do
-  root to: 'user/homes#top'
-  namespace :user do
+
+  root to: 'public/homes#top'
+
+  namespace :admin do
+    get 'homes/top' => 'homes#top'
+    resources :users, only: [:index, :show, :destroy]
+    resources :comments, only: [:destroy]
+    resources :groups, only: [:index, :show]
+    resources :tasks, only: [:show, :destroy]
+  end
+
+  namespace :public do
+    get 'my_page' => 'users#show'
     resources :tasks, only: [:new, :create, :show, :edit, :update, :destroy]
-    resources :users, only: [:show, :index, :update]
+    resources :users, only: [:index, :update]
     resources :groups, only: [:new, :create, :index, :weekly, :calender, :show]
     resources :group_users, only: [:create, :destroy]
     resources :comments, only: [:create, :destroy]
@@ -16,7 +27,7 @@ Rails.application.routes.draw do
   sessions: "admin/sessions",
   registrations: "admin/registrations"
 }
-  
+
   devise_for :users, skip: [:passwords], controllers: {
   registrations: "public/registrations",
   sessions: 'public/sessions'
