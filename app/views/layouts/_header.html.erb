@@ -1,25 +1,33 @@
+<header>
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12 d-flex justify-content-end">
+        <ul class="navbar-nav">
+          <% if user_signed_in? %>
 
-<ul>
-  <% if user_signed_in? %>
+             <!--ユーザーログイン時 -->
+            <li><%= link_to "グループ", public_groups_path, class: "text-dark" %></li>
+            <li><%= link_to "メッセージ", public_users_path, class: "text-dark" %></li>
+            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-dark" %></li>
+            <li>
+              <%= link_to public_my_page_path do %>
+                <i class="fa-duotone fa-user-gear"></i>
+              <% end %>
+            </li>
 
-     <!--顧客ログイン時 -->
-    <li><%= link_to "グループ", public_groups_path %></li>
-    <li><%= link_to "メッセージ", public_users_path %></li>
-    <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete %></li>
-    <li>
-      <%= link_to public_my_page_path do %>
-        <i class="fa-duotone fa-user-gear"></i>
-      <% end %>
-    </li>
+          <% elsif admin_signed_in? %>
 
-  <% elsif admin_signed_in? %>
+            <!-- 管理者ログイン時 -->
+            <li><%= link_to "グループ・タスク管理", admin_groups_path, class: "text-dark" %></li>
+            <li><%= link_to "ユーザー管理", admin_users_path, class: "text-dark" %></li>
+            <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, url: admin_session_path, class: "text-dark" %></li>
 
-    <!-- 管理者ログイン時 -->
-    <li><%= link_to "グループ・タスク管理", admin_groups_path %></li>
-    <li><%= link_to "ユーザー管理", admin_user_path %></li>
-    <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, url: admin_session_path %></li>
-
-  <% else %>
-    <li><%= link_to "ログイン", new_user_session_path %></li>
-  <% end %>
-</ul>
+          <% else %>
+            <!--ログアウト時-->
+            <li><%= link_to "ログイン", new_user_session_path, class: "text-dark" %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </div>
+</head>

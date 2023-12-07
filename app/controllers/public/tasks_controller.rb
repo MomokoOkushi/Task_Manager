@@ -1,4 +1,4 @@
-class User::TasksController < ApplicationController
+class Public::TasksController < ApplicationController
   def new
   end
 

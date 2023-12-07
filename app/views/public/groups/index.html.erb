@@ -1,2 +1,26 @@
-<h1>User::Groups#index</h1>
-<p>Find me in app/views/user/groups/index.html.erb</p>
+<div class="contain">
+  <h4>グループを作成</h4>
+    <%= form_with model: @group, url: public_groups_path do |f| %>
+      <%= f.text_field :name, placeholder: "新しいグループ名", maxlength: 30 %>
+      <%= f.submit '作成' %>
+    <% end %>
+  <div class="row">
+    <div class="col p-3">
+      <h5>マイグループ</h5>
+      <% @my_group.each do |my_group| %>
+        <%= link_to my_group.group.name %>
+      <% end %>
+    </div>
+    <div class="col p-3">
+      <h5>グループ一覧</h5>
+      <% @groups.each do |group| %>
+        <table>
+          <tr>
+            <td><%= link_to group.name, public_group_path(group) %></td>
+            <td><%= link_to "参加する", public_group_users_path, method: :post %></td>
+          </tr>
+        </table>
+      <% end %>
+    </div>
+  </div>
+</div>

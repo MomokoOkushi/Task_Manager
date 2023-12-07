@@ -1,4 +1,4 @@
-class User::RoomsController < ApplicationController
+class Public::RoomsController < ApplicationController
   def show
   end
   
