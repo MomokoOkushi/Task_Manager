@@ -4,8 +4,9 @@ class Public::GroupUsersController < ApplicationController
   def create
     group_user = current_user.group_users.new(group_id: params[:group_id])
     if group_user.save
-      redirect_to public_group_path
+      redirect_to public_group_path(params[:group_id])
     else
+      flash[:alert] = "参加できませんでした。"
       redirect_to request.referer
     end
   end

@@ -16,8 +16,7 @@ class Public::GroupsController < ApplicationController
   def index
     @group = Group.new
     @groups = Group.all
-    @my_group = GroupUser.where(user_id: current_user.id) #ユーザーが所属しているグループを抽出
-    @group_user
+    @my_groups = GroupUser.where(user_id: current_user.id) #ユーザーが所属しているグループを抽出
   end
 
   def show

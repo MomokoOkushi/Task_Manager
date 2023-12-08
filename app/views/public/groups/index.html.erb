@@ -7,8 +7,13 @@
   <div class="row">
     <div class="col p-3">
       <h5>マイグループ</h5>
-      <% @my_group.each do |my_group| %>
-        <%= link_to my_group.group.name %>
+      <% @my_groups.each do |my_group| %>
+        <table>
+          <tr>
+            <td><%= link_to my_group.group.name, public_group_path(my_group) %></td>
+            <td><%= link_to "退会する", public_group_group_user_path(my_group.group_id, current_user), method: :delete %></td>
+          </tr>
+        </table>
       <% end %>
     </div>
     <div class="col p-3">
@@ -17,7 +22,7 @@
         <table>
           <tr>
             <td><%= link_to group.name, public_group_path(group) %></td>
-            <td><%= link_to "参加する", public_group_users_path, method: :post %></td>
+            <td><%= link_to "参加する", public_group_group_users_path(group), method: :post %></td>
           </tr>
         </table>
       <% end %>
