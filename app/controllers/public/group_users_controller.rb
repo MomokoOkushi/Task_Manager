@@ -6,7 +6,6 @@ class Public::GroupUsersController < ApplicationController
     if group_user.save
       redirect_to public_group_path(params[:group_id])
     else
-      flash[:alert] = "参加できませんでした。"
       redirect_to request.referer
     end
   end

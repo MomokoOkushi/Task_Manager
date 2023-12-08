@@ -1,0 +1,9 @@
+ja:
+  enums:
+    task_user:
+      task_status:
+        before_starting: "未着手"
+        started: "着手"
+        under_survay: "調査中"
+        waiting_contacts: "連絡待ち"
+        waiting_confirmation: "完了確認待ち"
