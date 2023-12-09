@@ -21,7 +21,8 @@ class Public::GroupsController < ApplicationController
 
   def show
     @group = Group.find(params[:id])
-    @tasks = 
+    @tasks = Task.where(group_id: params[:id])
+    @task_users = User.includes(:task_users).where(task_users: {task_id: @tasks.ids})
     # post.rb
     # belongs_to user
     # Post.includes(:user).where(users: {gender: "men"})
