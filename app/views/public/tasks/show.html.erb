@@ -1,2 +1,13 @@
-<h1>User::Tasks#show</h1>
-<p>Find me in app/views/user/tasks/show.html.erb</p>
+<%= @task.start_time%>
+<br>
+<%= @task.title %>
+<br>
+<%= @task.detail %>
+<br>
+
+
+<% @task.users.each do |user| %>
+  <%= user.name%>
+  <br>
+<%end %>
+

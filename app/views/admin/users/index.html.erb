@@ -1,2 +1,24 @@
-<h1>Admin::Users#index</h1>
-<p>Find me in app/views/admin/users/index.html.erb</p>
+<h3>社員一覧</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <td>ID</td>
+        <td>氏名</td>
+        <td>所属</td>
+        <td>メールアドレス</td>
+        <td></td>
+      </tr>
+    </thead>
+    <% @users.each do |user| %>
+      <tbody>
+        <tr>
+          <td><%= user.id %></td>
+          <td><%= user.name%></td>
+          <td><%= user.department %></td>
+          <td><%= user.email %></td>
+          <td><%= link_to "削除", admin_user_path(user), method: :delete %></td>
+        </tr>
+      </ybody>
+    <% end %>
+  </table>

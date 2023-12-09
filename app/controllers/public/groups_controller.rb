@@ -16,10 +16,20 @@ class Public::GroupsController < ApplicationController
   def index
     @group = Group.new
     @groups = Group.all
-    @my_groups = GroupUser.where(user_id: current_user.id) #ユーザーが所属しているグループを抽出
+    @my_groups = current_user.groups
   end
 
   def show
+    @group = Group.find(params[:id])
+    @tasks = 
+    # post.rb
+    # belongs_to user
+    # Post.includes(:user).where(users: {gender: "men"})
+
+
+    # task.rb
+    # has_many :tags
+    # Task.includes(:tggs).where(tags: {name: params[:q]})
   end
 
   def edit

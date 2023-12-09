@@ -17,16 +17,16 @@ Rails.application.routes.draw do
     get 'homes/top' => 'homes#top'
     resources :users, only: [:index, :show, :destroy]
     resources :comments, only: [:destroy]
-    resources :groups, only: [:index, :show]
+    resources :groups, only: [:index, :show, :destroy]
     resources :tasks, only: [:show, :destroy]
   end
 
   namespace :public do
     get 'my_page' => 'users#show'
-    resources :tasks, only: [:new, :create, :show, :edit, :update, :destroy]
     resources :users, only: [:index, :update]
     resources :groups, only: [:new, :create, :index, :weekly, :calender, :show] do
       resources :group_users, only: [:create, :destroy]
+      resources :tasks, only: [:new, :create, :show, :edit, :update, :destroy]
     end
     resources :comments, only: [:create, :destroy]
     resources :rooms, only: [:create, :show]
