@@ -1,4 +1,20 @@
-<%= @task.start_time%>
+<h3><%= @task.group.name %>タスク</h3>
+<div  class="container">
+  <div class="row">
+    <div class="col">
+      <p>日付：<%= @task.start_time%></p><br>
+      <p>管理者：<%= @task.user.name %></p><br>
+      
+      <p>担当者一覧</p>
+      <% @task.users.each do |user| %>
+        <%= user.name%><br>
+      <%end %>
+
+    </div>
+  </div>
+</div>
+
+
 <br>
 <%= @task.title %>
 <br>

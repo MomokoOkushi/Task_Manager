@@ -4,6 +4,13 @@ class Task < ApplicationRecord
   belongs_to :group
   belongs_to :user
   
+  # def task_uses
+  #   TaskUsers.where(task_id: self.id)
+  # end
+  
+  # def users
+  #   User.where(id: self.task_users.pluck(:user_id))
+  # end
   
   def save_task_users(user_ids)
     task_users.destroy_all

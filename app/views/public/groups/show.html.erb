@@ -14,9 +14,8 @@
         <% @tasks.each do |task| %>
             <tr>
                 <td><%= task.start_time %></td>
-                <td><%= link_to task.title, public_group_task_path %></td>
-                <!--担当者名の取り出し方アソシエーションの観点から聞く-->
-                <% @task_users.each do |task_user|%>
+                <td><%= link_to task.title, public_group_task_path(@group, task) %></td>
+                <% task.users.each do |task_user|%>
                 <td><%= task_user.name %></td>
                 <% end %>
             </tr>
