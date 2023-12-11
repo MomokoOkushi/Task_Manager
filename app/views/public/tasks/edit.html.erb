@@ -1,0 +1,20 @@
+<div class="contain">
+  <div class="row">
+      <div class="col-md-5">
+        <%= form_with url: public_group_task_path(@task.group, @task), method: :patch do |f| %>
+          <p>日付　<%= f.datetime_select :start_time %></p><br>
+          <p>担当者</p>
+          <%= f. collection_check_boxes :user_ids, @task.group.users, :id, :name do |user| %>
+            <%= user.label {user.check_box + user.text } %>
+            <%= f.select :task_status, options_for_select(TaskUser.task_statuses_i18n.map {|key, value| [value, key]}, @task.task_users.first.task_status),{class: "form-control"} %>
+            <%= f.submit '進捗を更新' %><br>
+          <% end %>
+      </div>
+      <div class="col-md-7">
+          <%= f.text_field :title, placeholder: "タスクタイトル", maxlength: 30 %><br>
+          <%= f.text_area :detail, placeholder: "タスク詳細", maxlength: 30, rows: 10 %><br>
+          <%= f.submit '編集を保存' %>
+        <% end %>
+     </div>
+  </div>
+</div>

@@ -15,8 +15,11 @@
             <tr>
                 <td><%= task.start_time %></td>
                 <td><%= link_to task.title, public_group_task_path(@group, task) %></td>
-                <% task.users.each do |task_user|%>
-                <td><%= task_user.name %></td>
+                <% task.task_users.each do |task_user|%>
+                <td>
+                    <%= task_user.user.name %><br>
+                    <%= I18n.t("enums.task_user.task_status.#{task_user.task_status}") %>
+                </td>
                 <% end %>
             </tr>
         <% end %>

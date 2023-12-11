@@ -1,29 +1,23 @@
 <h3><%= @task.group.name %>タスク</h3>
 <div  class="container">
+  <%= link_to "タスクを編集する",edit_public_group_task_path(@group, @task) %>
   <div class="row">
     <div class="col">
       <p>日付：<%= @task.start_time%></p><br>
       <p>管理者：<%= @task.user.name %></p><br>
-      
-      <p>担当者一覧</p>
-      <% @task.users.each do |user| %>
-        <%= user.name%><br>
-      <%end %>
 
+      <p>担当者一覧</p>
+      <% @task.task_users.each do |task_user| %>
+        <%= task_user.user.name %>  <!--タスクの担当者を一覧にして呼び出す-->
+        <%= I18n.t("enums.task_user.task_status.#{task_user.task_status}") %><br> <!--タスク進捗を日本語訳して表示-->
+      <% end %>
+    </div>
+    <div class="col">
+      <%= @task.title %><br>
+      <%= @task.detail %>
+    </div>
+    <div class="col">
+      コメント機能
     </div>
   </div>
 </div>
-
-
-<br>
-<%= @task.title %>
-<br>
-<%= @task.detail %>
-<br>
-
-
-<% @task.users.each do |user| %>
-  <%= user.name%>
-  <br>
-<%end %>
-
