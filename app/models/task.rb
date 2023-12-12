@@ -1,8 +1,10 @@
 class Task < ApplicationRecord
   has_many :task_users, dependent: :destroy
   has_many :users , through: :task_users
+  has_many :comments, dependent: :destroy
   belongs_to :group
   belongs_to :user
+  
   
   # def task_uses
   #   TaskUsers.where(task_id: self.id)

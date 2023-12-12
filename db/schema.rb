@@ -80,7 +80,6 @@ ActiveRecord::Schema.define(version: 2023_12_06_122448) do
   create_table "task_users", force: :cascade do |t|
     t.integer "task_id", null: false
     t.integer "user_id", null: false
-    t.integer "task_status", default: 0, null: false
     t.boolean "is_complete", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

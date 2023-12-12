@@ -26,9 +26,10 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :update]
     resources :groups, only: [:new, :create, :index, :weekly, :calender, :show] do
       resources :group_users, only: [:create, :destroy]
-      resources :tasks, only: [:new, :create, :show, :edit, :update, :destroy]
+      resources :tasks, only: [:new, :create, :show, :edit, :update, :destroy] do
+        resources :comments, only: [:create, :destroy]
+      end
     end
-    resources :comments, only: [:create, :destroy]
     resources :rooms, only: [:create, :show]
     resources :messages, only: [:create]
   end

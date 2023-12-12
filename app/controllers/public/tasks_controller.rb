@@ -22,7 +22,7 @@ class Public::TasksController < ApplicationController
     @task = Task.find(params[:id])
     @group = @task.group
     @task_statuses = TaskUser.where(user_ids: @group.users)
-
+    @comment = Comment.new
   end
 
   def edit

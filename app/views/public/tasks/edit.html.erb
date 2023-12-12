@@ -6,8 +6,16 @@
           <p>担当者</p>
           <%= f. collection_check_boxes :user_ids, @task.group.users, :id, :name do |user| %>
             <%= user.label {user.check_box + user.text } %>
+            <!--タスク進捗セレクトボックス-->
             <%= f.select :task_status, options_for_select(TaskUser.task_statuses_i18n.map {|key, value| [value, key]}, @task.task_users.first.task_status),{class: "form-control"} %>
-            <%= f.submit '進捗を更新' %><br>
+            <%= f.submit '進捗を更新' %>
+            <!--管理者ログイン時に完了確認ボタンを表示-->
+             <% if current_user.id == @task.user.id %>
+               <%= f.radio_button :is_active, false, id: "task_user_is_complete_false" %>
+               <%= f.label :is_complete_false, "未確認", {value: :false, style: "display: inline-block;", for: "task_user_is_complete_false" } %>
+               <%= f.radio_button :is_active, true, id: "task_user_is_complete_true" %>
+               <%= f.label :is_complete_true, "確認済", {value: :true, style: "display: inline-block;", for: "task_user_is_complete_true" } %>
+            <% end %><br>
           <% end %>
       </div>
       <div class="col-md-7">
