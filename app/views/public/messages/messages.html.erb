@@ -1,0 +1,10 @@
+<div id="messages">
+  <%= render 'messages', messages:@messages %>
+</div>
+<%= form_with model:@message, url:public_messages_parth, method: :post, local:false, html: {id: 'message_form' } do |f| %>
+  <div class="d-flex justify-content-center">
+    <%= f.text_field :message ,class:"w-75",placeholder:"ここにチャットを入力してください",id:"message_field" %>
+    <%= f.hidden_field :receive_user_id,value: params[:id]%>
+    <%= f.submit "送信" ,class:"btn btn-secondary w-25" %>
+  </div>
+<% end %>

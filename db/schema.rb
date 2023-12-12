@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2023_12_06_122448) do
+ActiveRecord::Schema.define(version: 2023_12_12_091415) do
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -65,11 +65,11 @@ ActiveRecord::Schema.define(version: 2023_12_06_122448) do
   end
 
   create_table "messages", force: :cascade do |t|
-    t.integer "room_id", null: false
-    t.integer "user_id", null: false
     t.text "message", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "receive_user_id"
+    t.integer "send_user_id"
   end
 
   create_table "rooms", force: :cascade do |t|
@@ -80,6 +80,7 @@ ActiveRecord::Schema.define(version: 2023_12_06_122448) do
   create_table "task_users", force: :cascade do |t|
     t.integer "task_id", null: false
     t.integer "user_id", null: false
+    t.integer "task_status", default: 0, null: false
     t.boolean "is_complete", default: false, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

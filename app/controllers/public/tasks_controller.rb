@@ -48,11 +48,13 @@ class Public::TasksController < ApplicationController
   private
     def new_task_params
       params.permit(:title, :detail, :start_time)
-
     end
-
     def update_task_params
-      params.permit(:title, :detail, :start_time, :task_status, user_ids:[])
+
+      params.require(:task).permit(:title, :detail, :start_time, task_users_attributes:[:title, :detail, :start_time,:task_status, :_destroy, :id])
     end
+    # def update_task_params
+    #   params.permit(:title, :detail, :start_time)
+    # end
 
 end

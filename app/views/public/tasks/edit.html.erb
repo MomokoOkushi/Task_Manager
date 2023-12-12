@@ -1,25 +1,19 @@
 <div class="contain">
   <div class="row">
       <div class="col-md-5">
-        <%= form_with url: public_group_task_path(@task.group, @task), method: :patch do |f| %>
+        <%= form_with model:@task, url:public_group_task_path(@task.group, @task), method: :patch do |f| %>
           <p>日付　<%= f.datetime_select :start_time %></p><br>
           <p>担当者</p>
-          <%= f. collection_check_boxes :user_ids, @task.group.users, :id, :name do |user| %>
-            <%= user.label {user.check_box + user.text } %>
-            <!--タスク進捗セレクトボックス-->
-            <%= f.select :task_status, options_for_select(TaskUser.task_statuses_i18n.map {|key, value| [value, key]}, @task.task_users.first.task_status),{class: "form-control"} %>
-            <%= f.submit '進捗を更新' %>
-            <!--管理者ログイン時に完了確認ボタンを表示-->
-             <% if current_user.id == @task.user.id %>
-               <%= f.radio_button :is_active, false, id: "task_user_is_complete_false" %>
-               <%= f.label :is_complete_false, "未確認", {value: :false, style: "display: inline-block;", for: "task_user_is_complete_false" } %>
-               <%= f.radio_button :is_active, true, id: "task_user_is_complete_true" %>
-               <%= f.label :is_complete_true, "確認済", {value: :true, style: "display: inline-block;", for: "task_user_is_complete_true" } %>
-            <% end %><br>
-          <% end %>
+          
+          <%= f.fields_for :task_users do |i| %>
+          <%= i.label :task_status, "表記名" %>
+          <%= i.select :task_status, TaskUser.task_statuses_i18n.invert, class: "form-control" %>
+      <br>
+  <% end %>
       </div>
       <div class="col-md-7">
           <%= f.text_field :title, placeholder: "タスクタイトル", maxlength: 30 %><br>
+
           <%= f.text_area :detail, placeholder: "タスク詳細", maxlength: 30, rows: 10 %><br>
           <%= f.submit '編集を保存' %>
         <% end %>

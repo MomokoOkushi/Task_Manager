@@ -24,14 +24,14 @@ Rails.application.routes.draw do
   namespace :public do
     get 'my_page' => 'users#show'
     resources :users, only: [:index, :update]
+    resources :messages, only: [:create]
+    get 'messages/:id' => 'messages#message', as: 'message'
     resources :groups, only: [:new, :create, :index, :weekly, :calender, :show] do
       resources :group_users, only: [:create, :destroy]
       resources :tasks, only: [:new, :create, :show, :edit, :update, :destroy] do
         resources :comments, only: [:create, :destroy]
       end
     end
-    resources :rooms, only: [:create, :show]
-    resources :messages, only: [:create]
   end
 
 

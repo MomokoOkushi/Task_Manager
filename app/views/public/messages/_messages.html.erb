@@ -1,0 +1,15 @@
+<% messages.each do |message| %>
+  <% if message.send_user.id == current_user.id %>
+    <div class="mb-1 d-flex">
+      <div class="rounded bg-success text-black text-break" style="max-width:50%">
+        <%= message.message %>
+      </div>
+    </div>
+  <% else %>
+    <div class="d-flex flex-row-reverse mb-1">
+      <div class="rounded bg-secondary text-white text-break mw-100" style="max-width:50%;">
+        <%= message.message %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

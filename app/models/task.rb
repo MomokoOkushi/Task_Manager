@@ -4,6 +4,7 @@ class Task < ApplicationRecord
   has_many :comments, dependent: :destroy
   belongs_to :group
   belongs_to :user
+  accepts_nested_attributes_for :task_users
   
   
   # def task_uses
@@ -20,4 +21,15 @@ class Task < ApplicationRecord
       TaskUser.create(user_id: user_id, task_id: id)
     end
   end
+   def update_task_users(user_ids)
+    user_ids.each do |user_id|
+      TaskUser.create(user_id: user_id, task_id: id)
+    end
+  end
 end
+
+# [1,2,3,4].each do |user|
+#     TaskUser.create(user_id: user_id, task_id: id)
+# end
+
+# [{user_id: 1, status: 0, conplete: false},{user_id: 1, status: 0, conplete: false} ]
