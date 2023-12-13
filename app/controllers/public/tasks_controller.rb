@@ -51,7 +51,7 @@ class Public::TasksController < ApplicationController
     end
     def update_task_params
 
-      params.require(:task).permit(:title, :detail, :start_time, task_users_attributes:[:title, :detail, :start_time,:task_status, :_destroy, :id])
+      params.require(:task).permit(:title, :detail, :start_time, task_users_attributes:[:task_status, :is_complete, :id])
     end
     # def update_task_params
     #   params.permit(:title, :detail, :start_time)

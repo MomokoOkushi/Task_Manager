@@ -1,5 +1,5 @@
 <% messages.each do |message| %>
-  <% if message.send_user.id == current_user.id %>
+  <% if message.send_user_id == current_user.id %>
     <div class="mb-1 d-flex">
       <div class="rounded bg-success text-black text-break" style="max-width:50%">
         <%= message.message %>
@@ -13,3 +13,4 @@
     </div>
   <% end %>
 <% end %>
+
