@@ -1,9 +1,6 @@
 class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
 
-  def new
-  end
-
   def create
     @group = Group.new(group_params)
     if @group.save
@@ -47,11 +44,13 @@ class Public::GroupsController < ApplicationController
   end
 
   def weekly
-
+    @tasks = Task.find_by(group_id: params[:group_id])
+    @group = Group.find(params[:group_id])
   end
 
   def calender
-
+    @tasks = Task.find_by(group_id: params[:group_id])
+    @group = Group.find(params[:group_id])
   end
 
   private

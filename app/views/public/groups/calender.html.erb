@@ -1,0 +1,12 @@
+<h3><%= @group.name %>のタスクカレンダー</h3>
+<h5>表示切り替え</h5>
+<%= link_to "一覧", public_group_path(@group) %>|
+<%= link_to "カレンダー", public_group_calender_path(@group) %>|
+<%= link_to "ウィークリー", public_group_weekly_path(@group) %>
+
+<%= month_calendar(events: @tasks) do |date, tasks| %>
+  <%= date.day %><br>
+  <% tasks.each do |task| %>
+    <%= link_to task.title, public_group_task_path(task.group_id, task) %>
+  <% end %>
+<% end %>

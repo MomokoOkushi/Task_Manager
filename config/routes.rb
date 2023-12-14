@@ -16,9 +16,11 @@ Rails.application.routes.draw do
   namespace :admin do
     get 'homes/top' => 'homes#top'
     resources :users, only: [:index, :show, :destroy]
-    resources :comments, only: [:destroy]
-    resources :groups, only: [:index, :show, :destroy]
-    resources :tasks, only: [:show, :destroy]
+    resources :groups, only: [:index, :show, :destroy] do
+      resources :tasks, only: [:show, :destroy] do
+        resources :comments, only: [:destroy]
+      end
+    end
   end
 
   namespace :public do
@@ -27,15 +29,12 @@ Rails.application.routes.draw do
     resources :messages, only: [:create]
     get 'messages/:id' => 'messages#message', as: 'message'
     resources :groups, only: [:new, :create, :index, :weekly, :calender, :show] do
+      get 'calender' => 'groups#calender'
+      get 'weekly' => 'groups#weekly'
       resources :group_users, only: [:create, :destroy]
       resources :tasks, only: [:new, :create, :show, :edit, :update, :destroy] do
         resources :comments, only: [:create, :destroy]
       end
     end
   end
-
-
-
-  # devise_for :installs
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

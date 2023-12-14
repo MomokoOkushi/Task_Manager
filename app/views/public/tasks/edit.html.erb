@@ -1,4 +1,5 @@
 <div class="contain">
+  <%= link_to "タスクを削除", public_group_task_path(@task.group_id, @task), method: :delete %>
   <div class="row">
       <div class="col-md-5">
         <%= form_with model:@task, url:public_group_task_path(@task.group, @task), method: :patch do |f| %>
@@ -21,9 +22,9 @@
       </div>
 
       <div class="col-md-7">
-          <%= f.text_field :title, placeholder: "タスクタイトル", maxlength: 30 %><br>
+          <%= f.text_field :title, placeholder: "タスクタイトル", maxlength: 21 %><br>
 
-          <%= f.text_area :detail, placeholder: "タスク詳細", maxlength: 30, rows: 10 %><br>
+          <%= f.text_area :detail, placeholder: "タスク詳細", rows: 10 %><br>
           <%= f.submit '編集を保存' %>
         <% end %>
      </div>

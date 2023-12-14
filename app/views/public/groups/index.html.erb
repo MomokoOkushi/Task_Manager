@@ -21,8 +21,14 @@
       <% @groups.each do |group| %>
         <table>
           <tr>
-            <td><%= link_to group.name, public_group_path(group) %></td>
-            <td><%= link_to "参加する", public_group_group_users_path(group), method: :post %></td>
+            <td><%= group.name %></td>
+            <td>
+              <% if group.includesUser?(current_user)%>
+                ：参加済
+              <% else %>
+                <%= link_to "参加する", public_group_group_users_path(group), method: :post %>
+              <% end %>
+            </td>
           </tr>
         </table>
       <% end %>

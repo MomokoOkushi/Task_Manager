@@ -1,6 +1,6 @@
 宛先を選んでください<br>
 
 <% @users.each do |user| %>
-  <%= link_to user.name, public_message_path(user)%><br>
-  <%= user.department %>
+  <%= link_to user.name, public_message_path(user)%>
+  <%= user.department %><br>
 <% end %>

@@ -42,7 +42,9 @@ class Public::TasksController < ApplicationController
   end
 
   def destroy
-
+    @task = Task.find(params[:id])
+    @task.destroy
+    redirect_to public_group_path(@task.group_id)
   end
 
   private

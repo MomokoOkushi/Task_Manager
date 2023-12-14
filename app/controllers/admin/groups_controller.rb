@@ -5,7 +5,8 @@ class Admin::GroupsController < ApplicationController
   end
 
   def show
-
+    @group = Group.find(params[:id])
+    @tasks = @group.tasks.includes(:users)
   end
 
   def destroy

@@ -1,6 +1,11 @@
-
 <h3><%= @group.name %>のタスク一覧</h3>
 <%= link_to "グループタスクを作成",new_public_group_task_path(@group) %>
+
+<h5>表示切り替え</h5>
+<%= link_to "一覧",public_group_path(@group) %>|
+<%= link_to "カレンダー",public_group_calender_path(@group) %>|
+<%= link_to "ウィークリー", public_group_weekly_path(@group) %>
+
 
 <table border= 1>
     <thead>
@@ -25,5 +30,4 @@
         <% end %>
     </tbody>
 </table>
-
 

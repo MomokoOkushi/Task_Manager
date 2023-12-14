@@ -39,12 +39,17 @@
       <%= @task.detail %>
     </div>
     <div class="col">
-      <div class="comments_index">
-        <% @task.comments.each do |comment| %>
-          <%= comment.user.name %><%= comment.created_at %><br>
-          <%= comment.message %><br>
-        <% end %>
-      </div>
+      <h4>コメント</h4>
+      <% if @task.comments.present? %>
+        <div class="comments_index">
+          <% @task.comments.each do |comment| %>
+            <%= comment.user.name %><%= comment.created_at %><br>
+            <%= comment.message %><br>
+          <% end %>
+        </div>
+      <% else %>
+         <h4>コメントはありません</h4>
+      <% end %>
       <div class="new_comment">
         <%= form_with model: [@task, @comment], url: public_group_task_comments_path(@task.group, @task), method: :post do |f| %>
           <%= f.text_area :message, rows: '5', placeholder: "新しいコメントを記入" %>
