@@ -18,7 +18,9 @@
           <% if group.includesUser?(current_user) %>
             ：参加済
           <% else %>
-            <%= link_to "参加する", public_group_group_users_path(group), method: :post %>
+            <div class="normal-button">
+              <%= link_to "参加する", public_group_group_users_path(group), method: :post, class: "text-dark" %>
+            </div>
           <% end %>
         <% end %>
       </td>

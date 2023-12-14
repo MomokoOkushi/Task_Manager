@@ -1,7 +1,7 @@
 <!--エラーメッセージ-->
 <%= render "public/shared/error_messages", resource: @task %>
 
-<div class="container">
+<div class="container mt-5">
   <%= form_with url: public_group_tasks_path, method: :post do |f| %>
     <div class="row p-4">
       <div class="col-md-5">
@@ -12,9 +12,9 @@
         <% end %>
       </div>
       <div class="col-md-7">
-        <div><%= f.text_field :title, placeholder: "タスクタイトル", maxlength: 21 %></div><br>
-        <div><%= f.text_area :detail, placeholder: "タスク詳細", row: 20 %></div><br>
-        <div><%= f.submit '　　 　　保存　　 　　' %></div>
+        <div><%= f.text_field :title, placeholder: "タスクタイトルを入力(必須)", maxlength: 70 %></div><br>
+        <div><%= f.text_area :detail, placeholder: "タスク詳細を入力(任意)" ,  class: 'form-control',size: "10x10" %></div><br>
+        <div class="center"><%= f.submit '　　　保存　　　' %></div>
       </div>
     </div>
   <% end %>
