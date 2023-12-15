@@ -1,4 +1,6 @@
 class Admin::TasksController < ApplicationController
+  before_action :authenticate_user!
+
   def show
     @group = Group.find(params[:group_id])
     @task = Task.find(params[:id])
@@ -8,7 +10,12 @@ class Admin::TasksController < ApplicationController
 
   def destroy
     task = Task.find(params[:id])
-    task.destroy
-    redirect_to admin_group_path(task.group_id)
+    if task.destroy
+      flash[:success] = "タスクが削除されました"
+      redirect_to admin_group_path(task.group_id)
+    else
+      flash[:notice] = "タスクの削除に失敗しました。もう一度削除してください"
+      redirect_to request.referer
+    end
   end
 end

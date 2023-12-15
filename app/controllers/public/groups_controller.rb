@@ -4,8 +4,10 @@ class Public::GroupsController < ApplicationController
   def create
     @group = Group.new(group_params)
     if @group.save
-      redirect_to public_groups_path #, method: :post
+      flash[:notice] = "新しいグループを作成しました"
+      redirect_to public_groups_path
     else
+      flash[:notice] = "新しいグループの作成に失敗しました。もう一度作成してください"
       render 'index'
     end
   end

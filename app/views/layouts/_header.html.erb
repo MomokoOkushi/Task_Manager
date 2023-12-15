@@ -6,12 +6,25 @@
           <% if user_signed_in? %>
 
              <!--ユーザーログイン時 -->
-            <li><%= link_to "グループ", public_groups_path, class: "text-dark" %></li>
-            <li><%= link_to "メッセージ", public_users_path, class: "text-dark" %></li>
-            <li><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "text-dark" %></li>
+            <li><%= current_user.name %>さんがログイン中</li>
             <li>
-              <%= link_to public_my_page_path do %>
-                <i class="fa-duotone fa-user-gear"></i>
+                <%= link_to public_groups_path, class: "text-dark" do %>
+                  <i class="fa-solid fa-users">グループ</i>
+                <% end %>
+            </li>
+            <li>
+              <%= link_to public_users_path, class: "text-dark" do %>
+                  <i class="fa-solid fa-envelope">メッセージ</i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to destroy_user_session_path, method: :delete, class: "text-dark" do %>
+                <i class="fa-solid fa-right-to-bracket">ログアウト</i>
+              <% end %>
+            </li>
+            <li>
+              <%= link_to public_my_page_path, class: "text-dark" do %>
+                <i class="fa-solid fa-user-gear"></i>
               <% end %>
             </li>
 
@@ -24,7 +37,10 @@
 
           <% else %>
             <!--ログアウト時-->
-            <li><%= link_to "ログイン", new_user_session_path, class: "text-dark" %></li>
+            <li>
+              <i class="fa-solid fa-right-to-bracket"></i>
+              <%= link_to "ログイン", new_user_session_path, class: "text-dark" %>
+            </li>
           <% end %>
         </ul>
       </div>

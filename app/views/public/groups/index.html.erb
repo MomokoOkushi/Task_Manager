@@ -1,5 +1,5 @@
 <div class="contain">
-  <h4>グループを作成</h4>
+  <h5>グループを作成</h5>
     <%= form_with model: @group, url: public_groups_path do |f| %>
       <%= f.text_field :name, placeholder: "新しいグループ名", maxlength: 30 %>
       <%= f.submit '作成' %>

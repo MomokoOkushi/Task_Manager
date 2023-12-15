@@ -1,4 +1,5 @@
 class Admin::GroupsController < ApplicationController
+  before_action :authenticate_user!
 
   def index
     @groups = Group.all
@@ -11,7 +12,12 @@ class Admin::GroupsController < ApplicationController
 
   def destroy
     group = Group.find(params[:id])
-    group.destroy
-    redirect_to request.referer
+    if group.destroy
+      flash[:success] = "グループの削除に成功しました"
+      redirect_to request.referer
+    else
+      flash[:notice] = "グループの削除に失敗しました。もう一度削除してください"
+      redirect_to request.referer
+    end
   end
 end

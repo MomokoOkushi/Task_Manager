@@ -1,4 +1,6 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!
+
   def show #編集画面も兼ねる
     @user = User.find(current_user.id)
   end
@@ -9,8 +11,13 @@ class Public::UsersController < ApplicationController
 
   def update
     @user = User.find(current_user.id)
-    @user.update(user_params)
-    redirect_to request.referer
+     if @user.update(user_params)
+      flash[:success] = "正常に更新されました。"
+      redirect_to request.referer
+    else
+      flash[:notice] = "更新に失敗しました。"
+      render 'show'
+    end
   end
 
   private
