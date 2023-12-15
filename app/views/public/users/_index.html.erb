@@ -1,6 +1,6 @@
 <% users.each do |user| %>
   <p>
-    <%= link_to user.name, public_message_path(user) %>
+    <%= link_to user.name, public_message_path(user), class: "text-dark" %>
   　所属：<%= user.department %><br>
   </p>
 <% end %>

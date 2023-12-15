@@ -11,7 +11,7 @@
           <% @ordered_messages.each do |message| %>
             <tr>
               <td>
-                <%= link_to message.send_user.name, public_message_path(message.send_user) %>：
+                <%= link_to message.send_user.name, public_message_path(message.send_user), class: "text-dark" %>：
                 <%= message.send_user.department %>
               </td>
               <td class="text-black-50" >
