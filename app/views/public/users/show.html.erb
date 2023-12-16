@@ -5,6 +5,7 @@
   <h3 class="page-title m-4">登録情報</h3>
 </div>
 <div class="center">
+  <!--詳細情報表示と編集フォームを兼ねる-->
   <%= form_with model: @user, url: public_user_path(@user), method: :patch do |f| %>
     <div><%= f.text_field :name, maxlength: 21 %></div><br>
     <div><%= f.text_field :department, placeholder: "所属", maxlength: 21 %></div><br>
