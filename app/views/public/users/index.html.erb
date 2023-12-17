@@ -4,7 +4,7 @@
     <div class="content-bg m-1">
       <!--新着メッセージ-->
       <div class= "center">
-        <h5 class="center m-2">新着メッセージ</h5><br>
+        <h5 class="page-title m-2">新着メッセージ</h5><br>
       </div>
       <div class= "center">
         <!--最新メッセージのみを一部表示-->
@@ -37,18 +37,18 @@
         <% end %>
       </div>
 
-      <!--検索結果表示-->
+      <!--検索を行った場合のみ検索結果表示-->
       <% if @content %>
         <div class= "center">
           <div>
-            <h5>"<%= @content %>"検索結果</h5><br>
+            <h5 class="page-title m-2">"<%= @content %>"検索結果</h5><br>
             <%= render 'public/users/index', users: @records %>
           </div>
         </div>
       <% end %>
       <!--ユーザー一覧-->
       <div class= "center">
-        <h5 class="center m-2">宛先一覧</h5><br>
+        <h5 class="page-title m-2">宛先一覧</h5><br>
       </div>
       <div class= "center">
         <div>
