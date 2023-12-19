@@ -23,7 +23,7 @@
       <tbody>
         <tr>
           <td><%= user.id %></td>
-          <td><%= link_to user.name, admin_user_path(user) %></td>
+          <td><%= link_to user.name, admin_user_path(user), class: "text-dark" %></td>
           <td><%= user.department %></td>
           <td><%= user.email %></td>
         </tr>

@@ -14,7 +14,9 @@
   <div class="row">
     <div class="col-md-4">
       <div class="content-bg">
-        <h5>マイグループ</h5>
+        <div class= "center">
+          <h5 class="page-title m-2">マイグループ</h5>
+        </div>
         <% @my_groups.each do |my_group| %>
           <table>
             <tr>
@@ -29,7 +31,9 @@
     </div>
     <div class="col-md-4">
       <div class="content-bg">
-        <h5>グループ一覧</h5>
+        <div class= "center">
+          <h5 class="page-title m-2">グループ一覧</h5>
+        </div>
         <%= render 'public/groups/index', groups: @groups %>
       </div>
     </div>
@@ -42,11 +46,11 @@
             <%= f.submit "検索" %>
           <% end %>
         </div>
-        <!--検索結果表示-->
+        <!--検索された場合のみ検索結果表示-->
         <% if @content %>
           <div class= "center">
             <div>
-              <h5>"<%= @content %>"検索結果</h5><br>
+              <h5 class="page-title m-2">"<%= @content %>"検索結果</h5><br>
               <%= render 'public/groups/index', groups: @records %>
             </div>
           </div>
