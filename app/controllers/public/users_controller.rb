@@ -7,7 +7,14 @@ class Public::UsersController < ApplicationController
 
   def index
     @users = User.all
-    
+    @model = params[:user]
+    if @content = params[:content]
+      if @model = "user"
+        @records = User.search_for(params[:content], params[:method])
+      else
+        @records = Group.search_for(params[:content], params[:method])
+      end
+    end
   end
 
   def update

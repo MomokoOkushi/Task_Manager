@@ -26,19 +26,23 @@
         <%= render 'public/groups/index', groups: @groups %>
       </div>
     </div>
+    <!--検索機能-->
     <div class="col-md-4">
       <div class="mb-2">
         <%= render "/public/searches/form" %>
       </div>
+      <!--検索結果表示-->
       <% if @model == 'user' %>
-        <h3 class= "center" >"<%= @content %>"検索結果</h3><br>
-        <div class= "center">
-          <div><%= render 'public/users/index', users: @records %></div>
-        </div>
-      <% elsif @model == 'group' %>
-        <h3 class= "center">"<%= @content %>"検索結果</h3><br>
-        <div class= "center">
-          <div><%= render 'public/groups/index', groups: @records %></div>
+        <div class="content-bg p-2">
+          <h5 class= "center" >"<%= @content %>"検索結果</h5><br>
+          <div class= "center">
+            <div><%= render 'public/users/index', users: @records %></div>
+          </div>
+        <% elsif @model == 'group' %>
+          <h5 class= "center">"<%= @content %>"検索結果</h5><br>
+          <div class= "center">
+            <div><%= render 'public/groups/index', groups: @records %></div>
+          </div>
         </div>
       <% end %>
     </div>

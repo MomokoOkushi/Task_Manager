@@ -10,12 +10,23 @@ class Public::GroupsController < ApplicationController
       flash[:notice] = "新しいグループの作成に失敗しました。もう一度作成してください"
       render 'index'
     end
+
   end
 
   def index
-    @group = Group.new
-    @groups = Group.all
     @my_groups = current_user.groups
+    @groups = Group.all
+    @group = Group.new
+    model = params[:model]
+    if model #検索paramsが来たら以下の分岐を追加
+      @model = model
+      @content = params[:content]
+      if model == "user"
+        @records = User.search_for(params[:content], params[:method])
+      else
+        @records = Group.search_for(params[:content], params[:method])
+      end
+    end
   end
 
   def show
@@ -33,10 +44,6 @@ class Public::GroupsController < ApplicationController
     # Task.includes(:tggs).where(tags: {name: params[:q]})
   end
 
-  def edit
-
-  end
-
   def update
     if @group.save
       redirect_to public_group_path
@@ -46,31 +53,17 @@ class Public::GroupsController < ApplicationController
   end
 
   def weekly
-    @tasks = Task.find_by(group_id: params[:group_id])
     @group = Group.find(params[:group_id])
+    @tasks = @group.tasks
   end
 
   def calender
-    @tasks = Task.find_by(group_id: params[:group_id])
     @group = Group.find(params[:group_id])
-  end
-
-  def search
-    @model = params[:model]
-    @content = params[:content]
-    @method = params[:method]
-
-    if @model == "user"
-      @records = User.search_for(@content, @method)
-    else
-      @records = Group.search_for(@content, @method)
-    end
-    redirect_to public_groups_path
+    @tasks = @group.tasks
   end
 
   private
     def group_params
       params.require(:group).permit(:name)
     end
-
 end
