@@ -1,15 +1,20 @@
-<h3><%= @task.group.name %>タスク</h3>
+<h3 class="center"><%= @task.group.name %>タスク</h3>
 <div  class="container">
-  <%= link_to "一覧に戻る",public_group_path(@group) %><br>
-  <%= link_to "タスクを編集する",edit_public_group_task_path(@group, @task) %>
-
   <div class="row">
-    <div class="col">
-      <p>日付：<%= @task.start_time%></p><br>
-      <p>管理者：<%= @task.user.name %></p><br>
+    <div class="button-box m-1">
+        <div class="button"><%= link_to "一覧に戻る",public_group_path(@group) %><br></div>
+    </div>
+    <div class="button-box m-1">
+        <div class="button">  <%= link_to "タスクを編集する",edit_public_group_task_path(@group, @task) %></div>
+    </div>
+  </div>
 
+  <div class="row p-2">
+    <div class="col content-bg">
+      <p>日付：<%= @task.start_time.strftime("%Y年%-m月%-d日 %-H時%-M分") %></p><br>
+      <p>管理者：<%= @task.user.name %></p><br>
       <p>担当者一覧</p>
-      <table>
+      <table border= 1>
         <thead>
           <tr>
             <th>氏名</th>
@@ -34,27 +39,19 @@
         <% end %>
       </table>
     </div>
-    <div class="col">
-      <%= @task.title %><br>
-      <%= @task.detail %>
+    <div class="col content-bg">
+      <div class="task-box">
+        <%= @task.title %><br>
+        <%= @task.detail %>
+      </div>
     </div>
-    <div class="col">
+    <div class="col content-bg">
       <h4>コメント</h4>
-      <% if @task.comments.present? %>
-        <div class="comments_index">
-          <% @task.comments.each do |comment| %>
-            <%= comment.user.name %><%= comment.created_at %><br>
-            <%= comment.message %><br>
-          <% end %>
+        <div id="comments_show">
+          <%= render "public/comments/comments_show", {task: @task}%>
         </div>
-      <% else %>
-         <h4>コメントはありません</h4>
-      <% end %>
-      <div class="new_comment">
-        <%= form_with model: [@task, @comment], url: public_group_task_comments_path(@task.group, @task), method: :post do |f| %>
-          <%= f.text_area :message, rows: '5', placeholder: "新しいコメントを記入" %>
-          <%= f.submit "送信"%>
-        <% end%>
+      <div id="new_comment">
+        <%= render "public/comments/comment_form", {task: @task, comment: @comment}%>
       </div>
     </div>
   </div>

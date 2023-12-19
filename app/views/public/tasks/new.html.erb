@@ -1,7 +1,7 @@
 <div class="contain">
-  <div class="row">
+  <%= form_with url: public_group_tasks_path, method: :post do |f| %>
+  <div class="row p-4">
       <div class="col-md-5">
-        <%= form_with url: public_group_tasks_path, method: :post do |f| %>
           <p>日付　<%= f.datetime_select :start_time %></p><br>
           <p>担当者</p>
           <%= f. collection_check_boxes :user_ids, @group.users, :id, :name do |user| %>
@@ -9,10 +9,10 @@
           <% end %>
       </div>
       <div class="col-md-7">
-          <%= f.text_field :title, placeholder: "タスクタイトル", maxlength: 30 %><br>
-          <%= f.text_area :detail, placeholder: "タスク詳細", maxlength: 30, row: 10 %><br>
-          <%= f.submit 'タスクを保存' %>
-        <% end %>
-     </div>
+          <div><%= f.text_field :title, placeholder: "タスクタイトル", maxlength: 21 %></div><br>
+          <div><%= f.text_area :detail, placeholder: "タスク詳細", row: 20 %></div><br>
+          <div><%= f.submit '　　 　　保存　　 　　' %></div>
+      </div>
   </div>
+ <% end %>
 </div>

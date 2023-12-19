@@ -1,6 +1,9 @@
-<h3>一般アカウント一覧</h3>
-
-  <table>
+<h3 class="center m-4">一般アカウント一覧</h3>
+<div class="button-box mx-auto m-2">
+    <div class="button"><%= link_to "アカウント新規登録", new_user_registration_path %></div>
+</div>
+<div class="center">
+  <table class="content-bg">
     <thead>
       <tr>
         <td>ID</td>
@@ -22,3 +25,4 @@
       </ybody>
     <% end %>
   </table>
+</div>

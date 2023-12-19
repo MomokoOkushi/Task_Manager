@@ -1,14 +1,19 @@
-<h3><%= @task.group.name %>タスク</h3>
+<h3 class="center"><%= @task.group.name %>タスク</h3>
 <div  class="container">
-  <%= link_to "一覧に戻る",admin_group_path(@group) %><br>
-  <%= link_to "タスクを削除する",admin_group_task_path(@group, @task), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-
   <div class="row">
+      <div class="button-box m-1">
+          <div class="button"><%= link_to "一覧に戻る",admin_group_path(@group) %></div>
+      </div>
+      <div class="button-box m-1">
+          <div class="button"><%= link_to "タスクを削除する",admin_group_task_path(@group, @task), method: :delete, "data-confirm" => "本当に削除しますか？" %></div>
+      </div>
+  </div>
+  <div class="row p-2">
     <div class="col">
-      <p>日付：<%= @task.start_time%></p><br>
+      <p>日付：<%= @task.start_time.strftime("%Y年%-m月%-d日 %-H時%-M分") %></p><br>
       <p>管理者：<%= @task.user.name %></p><br>
       <p>担当者一覧</p>
-      <table>
+      <table border= 1>
         <thead>
           <tr>
             <th>氏名</th>
@@ -36,8 +41,10 @@
 
     <!--タスク内容-->
     <div class="col">
-      <%= @task.title %><br>
-      <%= @task.detail %>
+      <div class="task-box">
+        <%= @task.title %><br>
+        <%= @task.detail %>
+      </div>
     </div>
 
     <!--コメント-->
@@ -47,7 +54,7 @@
           <h4>コメント</h4>
           <% @task.comments.each do |comment| %>
             <%= comment.user.name %>
-            <%= comment.created_at %>
+            <%= comment.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分") %>
             <%= link_to "削除",admin_group_task_comment_path(@group, @task,comment), method: :delete, "data-confirm" => "本当に削除しますか？" %><br>
             <%= comment.message %><br>
           <% end %>

@@ -1,6 +1,9 @@
-宛先を選んでください<br>
-
-<% @users.each do |user| %>
-  <%= link_to user.name, public_message_path(user)%>
-  <%= user.department %><br>
-<% end %>
+<h4 class="center m-2">宛先を選んでください</h4><br>
+<div class="d-flex justify-content-center mb-2">
+  <%= render "/public/searches/form" %>
+</div>
+<div class="center">
+  <div class="content-bg p-2">
+    <%= render 'index', users: @users %>
+  </div>
+</div>

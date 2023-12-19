@@ -23,6 +23,7 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
+    get "/search", to: "groups#search"
     get 'my_page' => 'users#show'
     resources :users, only: [:index, :update]
     resources :messages, only: [:create]

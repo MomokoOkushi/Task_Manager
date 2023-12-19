@@ -55,6 +55,19 @@ class Public::GroupsController < ApplicationController
     @group = Group.find(params[:group_id])
   end
 
+  def search
+    @model = params[:model]
+    @content = params[:content]
+    @method = params[:method]
+
+    if @model == "user"
+      @records = User.search_for(@content, @method)
+    else
+      @records = Group.search_for(@content, @method)
+    end
+    redirect_to public_groups_path
+  end
+
   private
     def group_params
       params.require(:group).permit(:name)

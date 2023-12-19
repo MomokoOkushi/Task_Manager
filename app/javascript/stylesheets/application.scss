@@ -1,2 +1,88 @@
 @use '~bootstrap/scss/bootstrap';
 @import "./simple_calendar.scss";
+
+＊{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    }
+
+// 全ページ共通
+.center{
+    display: flex;
+    justify-content: center;
+}
+
+.content-bg{
+    background-color: #FAFFFF
+}
+
+main{
+    width: auto;
+    height: 900px;
+    background: linear-gradient( to bottom, white, #40A6EF);
+}
+
+// TOPページ(admin, public)
+.app-title{
+    display: flex;
+    justify-content: center;
+    margin-top: 250px;
+}
+.long_button_box:first-child{
+    margin-top: 250px;
+}
+
+.long_button_box{
+    display: flex; /* Flexboxの利用 */
+    justify-content: center; /* 子要素の横並び・中央寄せ */
+    background-color: #D4D4D4;
+    margin: 10px auto;
+    line-height: 30px;
+    width: 30%;
+}
+
+.long_button a{
+    color: black;
+}
+
+// ログイン画面
+.field:first-child{
+    margin-top: 250px;
+}
+
+.field{
+    display: flex; /* Flexboxの利用 */
+    justify-content: center; /* 子要素の横並び・中央寄せ */
+    margin: 15px;
+}
+
+.actions{
+    display: flex; /* Flexboxの利用 */
+    justify-content: center; /* 子要素の横並び・中央寄せ */
+}
+
+// グループタスク一覧
+.button-box{
+    display: flex; /* Flexboxの利用 */
+    justify-content: center; /* 子要素の横並び・中央寄せ */
+    background-color: #D4D4D4;
+    width: 160px
+}
+
+.button a{
+    color: black;
+}
+
+// タスク詳細
+.task-box{
+    display: flex; /* Flexboxの利用 */
+    justify-content: center; /* 子要素の横並び・中央寄せ */
+}
+
+.comment-message{
+    border: 0.5px solid black;
+    margin-bottom: 5px;
+    padding: 3px;
+}
+

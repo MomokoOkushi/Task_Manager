@@ -7,6 +7,7 @@ class Public::UsersController < ApplicationController
 
   def index
     @users = User.all
+    
   end
 
   def update
@@ -14,10 +15,10 @@ class Public::UsersController < ApplicationController
      if @user.update(user_params)
       flash[:success] = "正常に更新されました。"
       redirect_to request.referer
-    else
+     else
       flash[:notice] = "更新に失敗しました。"
       render 'show'
-    end
+     end
   end
 
   private

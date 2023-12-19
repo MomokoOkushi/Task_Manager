@@ -2,15 +2,10 @@ class Public::CommentsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    task = Task.find(params[:task_id])
+    @task = Task.find(params[:task_id])
     comment = current_user.comments.new(comment_params)
-    comment.task_id = task.id
+    comment.task_id = @task.id
     comment.save
-    redirect_to public_group_task_path(task.group, task)
-  end
-
-  def destroy
-
   end
 
   private

@@ -1,33 +1,41 @@
-<h3><%= @group.name %>のタスク一覧</h3>
-<%= link_to "グループタスクを作成",new_public_group_task_path(@group) %>
+<h3 class="center"><%= @group.name %>のタスク一覧</h3>
 
-<h5>表示切り替え</h5>
-<%= link_to "一覧",public_group_path(@group) %>|
-<%= link_to "カレンダー",public_group_calender_path(@group) %>|
-<%= link_to "ウィークリー", public_group_weekly_path(@group) %>
+<div class="center">
+    <h5>表示切り替え</h5>
+</div>
 
-
-<table border= 1>
-    <thead>
-        <tr>
-            <td>日付</td>
-            <td>タイトル</td>
-            <td>担当者</td>
-        </tr>
-    </thead>
-    <tbody>
-        <% @tasks.each do |task| %>
-            <tr>
-                <td><%= task.start_time %></td>
-                <td><%= link_to task.title, public_group_task_path(@group, task) %></td>
-                <% task.task_users.each do |task_user|%>
-                <td>
-                    <%= task_user.user.name %><br>
-                    <%= I18n.t("enums.task_user.task_status.#{task_user.task_status}") %>
-                </td>
+<div class="center">
+    <%= link_to "一覧",public_group_path(@group) %>|
+    <%= link_to "カレンダー",public_group_calender_path(@group) %>|
+    <%= link_to "ウィークリー", public_group_weekly_path(@group) %>
+</div>
+<div class="col m-3 p-1">
+    <div class="button-box m-1">
+        <div class="button"><%= link_to "グループタスクを作成",new_public_group_task_path(@group) %></div>
+    </div>
+    <div class="content-bg">
+        <table border= 1>
+            <thead>
+                <tr>
+                    <td>日付</td>
+                    <td>タイトル</td>
+                    <td>担当者</td>
+                </tr>
+            </thead>
+            <tbody>
+                <% @tasks.each do |task| %>
+                    <tr>
+                        <td><%= task.start_time.strftime("%Y年%-m月%-d日 %-H時%-M分%-S秒") %></td>
+                        <td><%= link_to task.title, public_group_task_path(@group, task) %></td>
+                        <% task.task_users.each do |task_user|%>
+                        <td>
+                            <%= task_user.user.name %><br>
+                            <%= I18n.t("enums.task_user.task_status.#{task_user.task_status}") %>
+                        </td>
+                        <% end %>
+                    </tr>
                 <% end %>
-            </tr>
-        <% end %>
-    </tbody>
-</table>
-
+            </tbody>
+        </table>
+    </div>
+</div>

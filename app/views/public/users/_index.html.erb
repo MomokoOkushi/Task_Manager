@@ -1,0 +1,6 @@
+<% users.each do |user| %>
+  <p>
+    <%= link_to user.name, public_message_path(user)%>
+  　所属：<%= user.department %><br>
+  </p>
+<% end %>

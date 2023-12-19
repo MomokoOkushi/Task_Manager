@@ -1,11 +1,13 @@
-<h3>グループ一覧</h3>
-<div class="center" >
-  <% @groups.each do |group| %>
-    <table>
-      <tr>
-        <td><%= link_to group.name, admin_group_path(group) %></td>
-        <td><%= link_to "削除", admin_group_path(group), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
-      </tr>
-    </table>
-  <% end %>
+<h3 class="center m-4">グループ一覧</h3>
+<div>
+  <div class="content-bg">
+    <% @groups.each do |group| %>
+        <table class="center">
+          <tr>
+            <td><%= link_to group.name, admin_group_path(group) %></td>
+            <td><%= link_to "削除", admin_group_path(group), method: :delete, "data-confirm" => "本当に削除しますか？" %></td>
+          </tr>
+        </table>
+    <% end %>
+  </div>
 </div>

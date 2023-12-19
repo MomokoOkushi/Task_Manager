@@ -14,6 +14,16 @@ class User < ApplicationRecord
   has_many :sent_messages, class_name:"Message", foreign_key:"send_user", dependent: :destroy
   has_many :received_massages, class_name:"Message", foreign_key:"receive_user", dependent: :destroy
 
-
+def self.search_for(content, method)
+  if method == 'perfect'
+    User.where(name: content)
+  elsif method == 'forward'
+    User.where('name LIKE ?', content + '%')
+  elsif method == 'backward'
+    User.where('name LIKE ?', '%' + content)
+  else
+    User.where('name LIKE ?', '%' + content + '%')
+  end
+end
 
 end

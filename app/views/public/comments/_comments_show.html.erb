@@ -1,0 +1,12 @@
+<% if task.comments.present? %>
+  <div class="comments_index">
+    <% task.comments.each do |comment| %>
+      <div class="comment-message">
+        <%= comment.user.name %>　<%= comment.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分") %><br>
+        <%= comment.message %><br>
+      </div>
+    <% end %>
+  </div>
+<% else %>
+  <h4>コメントはありません</h4>
+<% end %>
