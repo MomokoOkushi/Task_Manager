@@ -38,6 +38,7 @@
 
             <!-- 管理者ログイン時 -->
             <div class="row p-2">
+              <p class="m-1">ー管理者ログイン中ー</p>
               <li class="m-1"><%= link_to "グループ・タスク管理", admin_groups_path, class: "text-dark" %></li>
               <li class="m-1"><%= link_to "ユーザー管理", admin_users_path, class: "text-dark" %></li>
               <li class="m-1"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, url: admin_session_path, class: "text-dark" %></li>
