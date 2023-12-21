@@ -4,7 +4,6 @@
       <div class="col-md-12 d-flex justify-content-end">
         <ul class="navbar-nav">
           <% if user_signed_in? %>
-
              <!--ユーザーログイン時 -->
             <div class="row p-2">
               <li class="m-1"><%= current_user.name %>さんがログイン中</li>
@@ -35,7 +34,6 @@
               </li>
             </div>
           <% elsif admin_signed_in? %>
-
             <!-- 管理者ログイン時 -->
             <div class="row p-2">
               <p class="m-1">ー管理者ログイン中ー</p>

@@ -2,7 +2,7 @@ class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
 
   def create
-    @my_groups = current_user.groups
+    @my_groups = current_user.groups #ログインユーザーが参加しているグループ
     @groups = Group.all
     @group = Group.new(group_params)
     if @group.save
@@ -15,10 +15,11 @@ class Public::GroupsController < ApplicationController
   end
 
   def index
-    @my_groups = current_user.groups
+    @my_groups = current_user.groups #ログインユーザーが参加しているグループ
     @groups = Group.all
     @group = Group.new
-    @content = params[:content] #検索フォームにパラメーターが送られたら、検索結果をページ内に表示する
+    #検索フォームにパラメーターが送られた場合、検索結果をページ内に表示する
+    @content = params[:content]
     if @content
       @records = Group.search_for(params[:content])
     end
