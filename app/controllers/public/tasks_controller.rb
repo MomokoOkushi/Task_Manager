@@ -54,7 +54,7 @@ class Public::TasksController < ApplicationController
 
   def destroy
     @task = Task.find(params[:id])
-    if@task.destroy
+    if @task.destroy
       flash[:success] = "タスクが削除されました"
       redirect_to public_group_path(@task.group_id)
     else
