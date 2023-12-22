@@ -1,6 +1,6 @@
 class Message < ApplicationRecord
-  belongs_to :send_user, class_name: 'User' #DM機能のリレーション：送信者IDをUserモデルからとってくる
-  belongs_to :receive_user, class_name: 'User' #DM機能リレーション：受信者IDをUserモデルからとってくる
+  belongs_to :send_user, class_name: 'User' #DM機能のリレーション：送信者IDをUserモデルから取得
+  belongs_to :receive_user, class_name: 'User' #DM機能リレーション：受信者IDをUserモデルから取得
 
   validates :message, presence: true
 
@@ -12,6 +12,6 @@ class Message < ApplicationRecord
   end
 
   def self.latest_message(send_user_id, current_user) #received_latest_messagesメソッドにて使用
-    where(send_user_id: send_user_id, receive_user_id: current_user.id).last
+    where(send_user_id: send_user_id, receive_user_id: current_user.id).last #もう一度送信者IDと受信者IDでメッセージを絞り込む。
   end
 end
