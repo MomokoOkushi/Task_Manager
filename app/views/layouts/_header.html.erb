@@ -9,6 +9,11 @@
             <div class="row p-2">
               <li class="m-1"><%= current_user.name %>さんがログイン中</li>
               <li class="m-1">
+                <%= link_to public_my_tasks_path, class: "text-dark" do %>
+                  <i class="fa-solid fa-list">マイタスク</i>
+                <% end %>
+              </li>
+              <li class="m-1">
                   <%= link_to public_groups_path, class: "text-dark" do %>
                     <i class="fa-solid fa-users">グループ</i>
                   <% end %>

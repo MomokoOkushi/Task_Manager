@@ -19,7 +19,6 @@ class Public::TasksController < ApplicationController
       flash[:notice] = "新しいタスク作成に失敗しました。もう一度作成してください"
       redirect_to request.referer
     end
-
   end
 
   def show
@@ -27,6 +26,14 @@ class Public::TasksController < ApplicationController
     @group = @task.group
     @task_statuses = TaskUser.where(user_ids: @group.users)
     @comment = Comment.new
+  end
+
+  def my_tasks
+    @tasks = Task.includes(:task_users).where(task_users: {user_id: current_user.id})
+  end
+
+  def my_weekly_tasks
+    @tasks = Task.includes(:task_users).where(task_users: {user_id: current_user.id})
   end
 
   def edit

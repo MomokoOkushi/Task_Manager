@@ -1,7 +1,7 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
 
-  def show #編集画面も兼ねる
+  def show #詳細画面も兼ねる
     @user = User.find(current_user.id)
   end
 

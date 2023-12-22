@@ -1,21 +1,25 @@
 <div class="container">
     <h3 class="center"><%= @group.name %>のタスク一覧</h3>
-    
+
     <div class="center">
         <h5>表示切り替え</h5>
     </div>
-    
+
     <div class="center">
         <%= link_to "一覧",public_group_path(@group) %>|
         <%= link_to "カレンダー",public_group_calender_path(@group) %>|
         <%= link_to "ウィークリー", public_group_weekly_path(@group) %>
     </div>
     <div class="col m-3 p-1">
-        <div class="button-box m-1">
-            <div class="button"><%= link_to "グループタスクを作成",new_public_group_task_path(@group) %></div>
+        <div class="center">
+            <div class="button-box m-1">
+                <div class="button"><%= link_to "グループタスクを作成",new_public_group_task_path(@group) %></div>
+            </div>
         </div>
+        <div class="center">
         <div class="content-bg">
             <%= render 'public/groups/group_tasks_index', tasks: @tasks, group: @group %>
+        </div>
         </div>
     </div>
 </div>

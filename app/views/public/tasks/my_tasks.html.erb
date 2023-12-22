@@ -1,0 +1,28 @@
+<h3 class="center">マイタスク</h3>
+<div class="center">
+    <h5>表示切り替え</h5>
+</div>
+<div class="center">
+    <%= link_to "一覧",public_my_tasks_path(current_user) %>|
+    <%= link_to "ウィークリー", public_my_weekly_tasks_path(current_user) %>
+</div>
+<div class="center">
+  <div class="content-bg">
+    <table border= 1>
+      <thead>
+          <tr>
+              <td>日付</td>
+              <td>タイトル</td>
+          </tr>
+      </thead>
+      <tbody>
+          <% @tasks.each do |task| %>
+              <tr>
+                  <td><%= task.start_time.strftime("%Y年%-m月%-d日 %-H時%-M分") %></td>
+                  <td><%= link_to task.title, public_group_task_path(task.group_id, task) %></td>
+              </tr>
+          <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>

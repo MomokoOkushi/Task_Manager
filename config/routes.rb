@@ -23,6 +23,8 @@ Rails.application.routes.draw do
   end
 
   namespace :public do
+    get 'my_tasks' => 'tasks#my_tasks'
+    get 'my_weekly_tasks' => 'tasks#my_weekly_tasks'
     get 'my_page' => 'users#show'
     resources :users, only: [:index, :update]
     resources :messages, only: [:create]

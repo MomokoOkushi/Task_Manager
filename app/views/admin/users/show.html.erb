@@ -1,35 +1,63 @@
-<div class="content">
-  <h3 class="center m-4"><%= @user.name %>の情報</h3>
-  <div class="center">
-    <div class="button-box m-1">
-      <div class="button">
-        <%= link_to "ユーザーを削除", admin_user_path(@user), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+<h3 class="center m-4"><%= @user.name %>の情報</h3>
+<div class="center">
+  <div class="button-box m-1">
+    <div class="button">
+      <%= link_to "ユーザーを削除", admin_user_path(@user), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+    </div>
+  </div>
+</div>
+<div class="row">
+  <div class="col-md-4 offset-2">
+    <div class="center">
+      <div class="content-bg">
+        <table border= "1">
+          <tr>
+            <td>ID</td>
+            <td><%= @user.id %></td>
+          </tr>
+          <tr>
+            <td>所属</td>
+            <td><%= @user.department %></td>
+          </tr>
+          <tr>
+            <td>メールアドレス</td>
+            <td><%= @user.email %></td>
+          </tr>
+          <tr>
+            <td>参加中のグループ</td>
+            <td>
+              <% @user_groups.each do |user_group| %>
+                <%= user_group.name %><br>
+              <% end %>
+            </td>
+          </tr>
+        </table>
       </div>
     </div>
   </div>
-  <div class="center">
-    <div class="content-bg">
-      <table border= "1">
-        <tr>
-          <td>ID</td>
-          <td><%= @user.id %></td>
-        </tr>
-        <tr>
-          <td>所属</td>
-          <td><%= @user.department %></td>
-        </tr>
-        <tr>
-          <td>メールアドレス</td>
-          <td><%= @user.email %></td>
-        </tr>
-        <tr>
-          <td>参加中のグループ</td>
-          <td>
-            <% @user_groups.each do |user_group| %>
-              <%= user_group.name %><br>
-            <% end %>
-          </td>
-        </tr>
-      </table>
+
+  <div class="col-md-6">
+    <div class="center">
+      <div class="content-bg">
+        <table border= "1">
+          <thead>
+            <tr>
+              <td>グループ名</td>
+              <td>タスク名</td>
+              <td>日時</td>
+            </tr>
+          </thead>
+          <% @user_tasks.each do |user_task| %>
+            <tbody>
+              <tr>
+                <td><%= user_task.group.name %></td>
+                <td><%= user_task.title %></td>
+                <td><%= user_task.start_time.strftime("%Y年%-m月%-d日 %-H時%-M分") %></td>
+              </tr>
+            </tbody>
+          <% end %>
+        </table>
+      </div>
     </div>
   </div>
+</div>

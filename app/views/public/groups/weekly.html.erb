@@ -6,10 +6,5 @@
   <%= link_to "ウィークリー", public_group_weekly_path(@group) %>
 </div>
 <div class="content-bg mt-5 p-1">
-  <%= week_calendar(number_of_weeks: 1, events: @tasks) do |date, tasks| %>
-    <%= date.day %><br>
-    <% tasks.each do |task| %>
-      <%= link_to task.title, public_group_task_path(task.group_id, task) %>
-    <% end %>
-  <% end %>
+  <%= render 'public/groups/weekly_tasks', tasks: @tasks %>
 </div>
