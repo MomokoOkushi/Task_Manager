@@ -3,7 +3,7 @@ class Admin::TasksController < ApplicationController
 
   def show
     @group = Group.find(params[:group_id])
-    @task = Task.find(params[:id])
+    @task = @group.tasks.find(params[:id])
     @task_statuses = TaskUser.where(user_ids: @group.users)
     @comment = Comment.new
   end

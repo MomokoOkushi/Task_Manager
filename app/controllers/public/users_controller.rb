@@ -7,13 +7,9 @@ class Public::UsersController < ApplicationController
 
   def index
     @users = User.all
-    @model = params[:user]
-    if @content = params[:content]
-      if @model = "user"
-        @records = User.search_for(params[:content], params[:method])
-      else
-        @records = Group.search_for(params[:content], params[:method])
-      end
+    @content = params[:content]
+    if @content
+      @records = User.search_for(params[:content])
     end
   end
 

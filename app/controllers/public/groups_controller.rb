@@ -17,15 +17,9 @@ class Public::GroupsController < ApplicationController
     @my_groups = current_user.groups
     @groups = Group.all
     @group = Group.new
-    model = params[:model]
-    if model #検索paramsが来たら以下の分岐を追加
-      @model = model
-      @content = params[:content]
-      if model == "user"
-        @records = User.search_for(params[:content], params[:method])
-      else
-        @records = Group.search_for(params[:content], params[:method])
-      end
+    @content = params[:content]
+    if @content
+      @records = Group.search_for(params[:content])
     end
   end
 

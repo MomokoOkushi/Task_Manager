@@ -14,7 +14,7 @@ class Admin::GroupsController < ApplicationController
     group = Group.find(params[:id])
     if group.destroy
       flash[:success] = "グループの削除に成功しました"
-      redirect_to request.referer
+      redirect_to admin_groups_path
     else
       flash[:notice] = "グループの削除に失敗しました。もう一度削除してください"
       redirect_to request.referer

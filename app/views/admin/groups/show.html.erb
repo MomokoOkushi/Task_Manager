@@ -7,29 +7,7 @@
     </div>
     <div class="row m-1">
          <div class="content-bg">
-            <table border= 1>
-                <thead>
-                    <tr>
-                        <td>日付</td>
-                        <td>タイトル</td>
-                        <td>担当者</td>
-                    </tr>
-                </thead>
-                <tbody>
-                    <% @tasks.each do |task| %>
-                        <tr>
-                            <td><%= task.start_time.strftime("%Y年%-m月%-d日 %-H時%-M分") %></td>
-                            <td><%= link_to task.title, admin_group_task_path(@group, task) %></td>
-                            <% task.task_users.each do |task_user|%>
-                            <td>
-                                <%= task_user.user.name %><br>
-                                <%= I18n.t("enums.task_user.task_status.#{task_user.task_status}") %>
-                            </td>
-                            <% end %>
-                        </tr>
-                    <% end %>
-                </tbody>
-            </table>
+            <%= render 'public/groups/group_tasks_index', tasks: @tasks, group: @group %>
         </div>
     </div>
 </div>

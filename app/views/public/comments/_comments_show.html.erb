@@ -5,6 +5,11 @@
         <%= comment.user.name %>　<%= comment.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分") %><br>
         <%= comment.message %><br>
       </div>
+      <% if admin_signed_in? %>
+        <div>
+          <div><%= link_to "コメントを削除する", admin_group_task_comment_path(group, task, comment), method: :delete, "data-confirm" => "本当に削除しますか？" %></div>
+        </div>
+      <% end %>
     <% end %>
   </div>
 <% else %>

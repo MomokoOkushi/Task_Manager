@@ -1,0 +1,35 @@
+<div class="col content-bg">
+  <p>日付：<%= task.start_time.strftime("%Y年%-m月%-d日 %-H時%-M分") %></p><br>
+  <p>管理者：<%= task.user.name %></p><br>
+  <p>担当者一覧</p>
+  <table border= 1>
+    <thead>
+      <tr>
+        <th>氏名</th>
+        <th>進捗</th>
+        <th>完了確認</th>
+      </tr>
+    </thead>
+    <% task.task_users.each do |task_user| %>
+      <tbody>
+        <tr>
+          <td><%= task_user.user.name %></td>  <!--タスクの担当者を一覧にして呼び出す-->
+          <td><%= I18n.t("enums.task_user.task_status.#{task_user.task_status}") %></td> <!--タスク進捗を日本語訳して表示-->
+          <td>
+            <% if task_user.is_complete == false %> <!--タスク管理者からの完了確認状況-->
+              未確認
+            <% else %>
+              確認済
+            <% end %>
+          </td>
+        </tr>
+      </tbody>
+    <% end %>
+  </table>
+</div>
+<div class="col content-bg">
+  <div class="task-box">
+    <%= task.title %><br>
+    <%= task.detail %>
+  </div>
+</div>

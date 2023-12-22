@@ -1,12 +1,25 @@
 <% groups.each do |group| %>
   <table>
     <tr>
-      <td><%= group.name %></td>
       <td>
-        <% if group.includesUser?(current_user) %>
-          ：参加済
-        <% else %>
-          <%= link_to "参加する", public_group_group_users_path(group), method: :post %>
+        <!--管理者ログイン時-->
+        <% if admin_signed_in? %>
+          <%= link_to group.name, admin_group_path(group) %>
+        <!--ユーザーログイン時  -->
+        <% elsif user_signed_in? %>
+          <%= group.name %>
+        <% end %>
+      </td>
+      <td>
+        <!--管理者ログイン時は表示なし-->
+        <% if admin_signed_in?%>
+        <!--ユーザーログイン時  -->
+        <% elsif user_signed_in? %>
+          <% if group.includesUser?(current_user) %>
+            ：参加済
+          <% else %>
+            <%= link_to "参加する", public_group_group_users_path(group), method: :post %>
+          <% end %>
         <% end %>
       </td>
     </tr>

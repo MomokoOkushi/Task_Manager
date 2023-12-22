@@ -1,0 +1,35 @@
+<div class="content">
+  <h3 class="center m-4"><%= @user.name %>の情報</h3>
+  <div class="center">
+    <div class="button-box m-1">
+      <div class="button">
+        <%= link_to "ユーザーを削除", admin_user_path(@user), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+      </div>
+    </div>
+  </div>
+  <div class="center">
+    <div class="content-bg">
+      <table border= "1">
+        <tr>
+          <td>ID</td>
+          <td><%= @user.id %></td>
+        </tr>
+        <tr>
+          <td>所属</td>
+          <td><%= @user.department %></td>
+        </tr>
+        <tr>
+          <td>メールアドレス</td>
+          <td><%= @user.email %></td>
+        </tr>
+        <tr>
+          <td>参加中のグループ</td>
+          <td>
+            <% @user_groups.each do |user_group| %>
+              <%= user_group.name %><br>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
