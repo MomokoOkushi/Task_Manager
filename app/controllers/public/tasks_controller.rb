@@ -8,8 +8,8 @@ class Public::TasksController < ApplicationController
 
   def create
     @task = Task.new(new_task_params)
-    group = Group.find(params[:group_id])
-    @task.group_id = group.id
+    @group = Group.find(params[:group_id])
+    @task.group_id = @group.id
     @task.user_id = current_user.id
     if @task.save
       @task.save_task_users(params[:user_ids])
@@ -17,7 +17,7 @@ class Public::TasksController < ApplicationController
       redirect_to public_group_task_path(params[:group_id], @task)
     else
       flash[:notice] = "新しいタスク作成に失敗しました。もう一度作成してください"
-      redirect_to request.referer
+      render 'new'
     end
   end
 
@@ -29,11 +29,9 @@ class Public::TasksController < ApplicationController
   end
 
   def my_tasks
+    @task_users = TaskUser.where(user_id: current_user.id)
     @tasks = Task.includes(:task_users).where(task_users: {user_id: current_user.id})
-  end
-
-  def my_weekly_tasks
-    @tasks = Task.includes(:task_users).where(task_users: {user_id: current_user.id})
+    @calendar_type = params[:calendar_type]
   end
 
   def edit

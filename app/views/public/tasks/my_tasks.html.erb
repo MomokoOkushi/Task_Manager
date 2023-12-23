@@ -4,25 +4,49 @@
 </div>
 <div class="center">
     <%= link_to "一覧",public_my_tasks_path(current_user) %>|
-    <%= link_to "ウィークリー", public_my_weekly_tasks_path(current_user) %>
+    <%= link_to "カレンダー", public_my_tasks_path(current_user,calendar_type: "calendar") %>|
+    <%= link_to "ウィークリー", public_my_tasks_path(current_user,calendar_type: "weekly") %>
 </div>
-<div class="center">
+
+<!--表示形式ごとにタスクを表示する-->
+<% if @calendar_type == "calendar" %>
+  <!--カレンダー表示-->
   <div class="content-bg">
-    <table border= 1>
-      <thead>
+      <%= month_calendar(events: @tasks) do |date, tasks| %>
+          <%= date.day %><br>
+          <% tasks.each do |task| %>
+              <%= link_to task.title, public_group_task_path(task.group_id, task) %><br>
+          <% end %>
+      <% end %>
+  </div>
+<% elsif @calendar_type == "weekly" %>
+  <!--1週間別表示-->
+  <div class="content-bg">
+      <%= render 'public/groups/weekly_tasks', tasks: @tasks %>
+  </div>
+<% else %>
+  <!--一覧表示-->
+  <div class="center">
+    <div class="content-bg">
+      <table border= 1>
+        <thead>
           <tr>
               <td>日付</td>
               <td>タイトル</td>
+              <td>進捗状況</td>
           </tr>
-      </thead>
-      <tbody>
-          <% @tasks.each do |task| %>
+        </thead>
+        <tbody>
+          <% @task_users.each do |task_user| %>
               <tr>
-                  <td><%= task.start_time.strftime("%Y年%-m月%-d日 %-H時%-M分") %></td>
-                  <td><%= link_to task.title, public_group_task_path(task.group_id, task) %></td>
+                  <td><%= task_user.task.start_time.strftime("%Y年%-m月%-d日 %-H時%-M分") %></td>
+                  <td><%= link_to task_user.task.title, public_group_task_path(task_user.task.group_id, task_user.task) %></td>
+                  <td><%= I18n.t("enums.task_user.task_status.#{task_user.task_status}") %></td>
               </tr>
           <% end %>
-      </tbody>
-    </table>
+        </tbody>
+      </table>
+    </div>
   </div>
-</div>
+<% end %>
+

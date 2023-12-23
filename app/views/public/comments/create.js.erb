@@ -1,3 +1,4 @@
 $('#comments_show').html("<%= j(render "public/comments/comments_show", task: @task)%>");
+$('#error_message').html("<%= j(render "public/shared/error_messages", resource: @comment )%>");
 $("textarea").val('');
 

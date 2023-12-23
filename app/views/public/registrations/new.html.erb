@@ -1,7 +1,9 @@
+<!--エラーメッセージ-->
+<%= render "public/shared/error_messages", resource: resource %>
+
 <h3 class="field">新規アカウント登録</h3>
 
 <%= form_for(resource, as: resource_name, url: user_registration_path) do |f| %>
-  <%= render "public/shared/error_messages", resource: resource %>
 
   <div class="field">
     <%= f.text_field :name, placeholder: "氏名" %>

@@ -7,6 +7,9 @@
   <div class="d-flex justify-content-center">
     <%= f.text_field :message ,class:"w-75",placeholder:"ここにチャットを入力してください", id:"message_field" %>
     <%= f.hidden_field :receive_user_id,value: params[:id]%>
+    <!--エラーメッセージ-->
+    <%= render "public/shared/error_messages", resource: @message %>
+
     <%= f.submit "送信" ,class:"btn btn-secondary w-25" %>
   </div>
 <% end %>

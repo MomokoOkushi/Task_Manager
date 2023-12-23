@@ -1,3 +1,6 @@
+<!--エラーメッセージ-->
+<%= render "public/shared/error_messages", resource: @task %>
+
 <div class="contain">
   <%= form_with url: public_group_tasks_path, method: :post do |f| %>
   <div class="row p-4">

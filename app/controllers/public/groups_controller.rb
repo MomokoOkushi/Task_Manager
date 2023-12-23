@@ -2,6 +2,8 @@ class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
 
   def create
+    @my_groups = current_user.groups
+    @groups = Group.all
     @group = Group.new(group_params)
     if @group.save
       flash[:notice] = "新しいグループを作成しました"
@@ -10,7 +12,6 @@ class Public::GroupsController < ApplicationController
       flash[:notice] = "新しいグループの作成に失敗しました。もう一度作成してください"
       render 'index'
     end
-
   end
 
   def index
@@ -26,16 +27,7 @@ class Public::GroupsController < ApplicationController
   def show
     @group = Group.find(params[:id])
     @tasks = @group.tasks.includes(:users)
-    #@tasks = @group.tasks.includes(:users).where('users.name': "yamada")
-    #@task_users = User.includes(:task_users).where(task_users: {task_id: @tasks.ids})
-    # post.rb
-    # belongs_to user
-    # Post.includes(:user).where(users: {gender: "men"})
-
-
-    # task.rb
-    # has_many :tags
-    # Task.includes(:tggs).where(tags: {name: params[:q]})
+    @calendar_type = params[:calendar_type]
   end
 
   def update
@@ -44,16 +36,6 @@ class Public::GroupsController < ApplicationController
     else
       render 'edit'
     end
-  end
-
-  def weekly
-    @group = Group.find(params[:group_id])
-    @tasks = @group.tasks
-  end
-
-  def calender
-    @group = Group.find(params[:group_id])
-    @tasks = @group.tasks
   end
 
   private

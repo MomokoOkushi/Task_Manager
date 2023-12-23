@@ -1,10 +1,15 @@
-<div class="contain p-5">
-  <div class="row m-2">
+<!--エラーメッセージ-->
+<div class="row m-1"><%= render "public/shared/error_messages", resource: @group %></div>
+
+<div class="container">
+  <div class="group-form mt-5 mb-2">
     <h5>グループを作成　</h5>
-      <%= form_with model: @group, url: public_groups_path do |f| %>
+    <%= form_with model: @group, url: public_groups_path do |f| %>
+      <div class="group-form">
         <%= f.text_field :name, placeholder: "新しいグループ名", maxlength: 30 %>
         <%= f.submit '作成' %>
-      <% end %>
+      </div>
+    <% end %>
   </div>
   <div class="row">
     <div class="col-md-4">

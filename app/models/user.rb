@@ -14,6 +14,10 @@ class User < ApplicationRecord
   has_many :sent_messages, class_name:"Message", foreign_key:"send_user", dependent: :destroy
   has_many :received_massages, class_name:"Message", foreign_key:"receive_user", dependent: :destroy
 
+  validates :name, presence: true
+  validates :email, presence: true
+  validates :encrypted_password, presence: true
+
   def self.search_for(content)
       User.where('name LIKE ?', '%' + content + '%')
   end
