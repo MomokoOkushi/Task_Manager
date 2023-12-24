@@ -11,17 +11,18 @@
             <tr>
                 <td><%= task.start_time.strftime("%Y年%-m月%-d日 %-H時%-M分") %></td>
                 <td>
-                  <% if admin_signed_in? %>
-                    <%= link_to task.title, admin_group_task_path(group, task) %>
-                  <% elsif user_signed_in? %>
-                    <%= link_to task.title, public_group_task_path(group, task) %>
-                  <% end %>
+                    <!--タスク名にリンクをつけて表示-->
+                    <% if admin_signed_in? %>
+                        <%= link_to task.title, admin_group_task_path(group, task) %>
+                    <% elsif user_signed_in? %>
+                        <%= link_to task.title, public_group_task_path(group, task) %>
+                    <% end %>
                 </td>
                 <% task.task_users.each do |task_user|%>
-                <td>
-                    <%= task_user.user.name %><br>
-                    <%= I18n.t("enums.task_user.task_status.#{task_user.task_status}") %>
-                </td>
+                    <td>
+                        <%= task_user.user.name %><br> <!--タスク担当者名を表示-->
+                        <%= I18n.t("enums.task_user.task_status.#{task_user.task_status}") %> <!--タスク担当者のタスク進捗状況を表示-->
+                    </td>
                 <% end %>
             </tr>
         <% end %>

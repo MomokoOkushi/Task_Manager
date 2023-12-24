@@ -5,37 +5,41 @@
   <%= form_with model:@task, url:public_group_task_path(@task.group, @task), method: :patch do |f| %>
     <div class="row p-3">
       <div class="button-box m-1">
-          <div class="button"><%= link_to "一覧に戻る",public_group_path(@task.group_id)  %></div>
+        <div class="button">
+          <%= link_to "一覧に戻る",public_group_path(@task.group_id)  %>
+        </div>
       </div>
       <div class="button-box m-1">
-          <div class="button">  <%= link_to "タスクを削除", public_group_task_path(@task.group_id, @task), method: :delete %></div>
+        <div class="button">
+          　<%= link_to "タスクを削除", public_group_task_path(@task.group_id, @task), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+        </div>
       </div>
     </div>
     <div class="row p-3">
-        <div class="content-bg col-md-5 p-2">
-            <p>日付　<%= f.datetime_select :start_time %></p><br>
-            <p>担当者</p>
+      <div class="content-bg col-md-5 p-2">
+        <p>日付　<%= f.datetime_select :start_time %></p><br>
+        <p>担当者</p>
 
-            <%= f.fields_for :task_users do |i| %>
-                <%= i.label :task_user, i.object.user.name %>
-                <!--担当者のタスク進捗状況を表示-->
-                <%= i.select :task_status, TaskUser.task_statuses_i18n.invert, class: "form-control" %>
+        <%= f.fields_for :task_users do |i| %>
+          <%= i.label :task_user, i.object.user.name %>
+          <!--担当者のタスク進捗状況を表示-->
+          <%= i.select :task_status, TaskUser.task_statuses_i18n.invert, class: "form-control" %>
 
-                 <!--管理者ログイン時に完了確認ボタンを表示-->
-                 <% if current_user.id == @task.user.id %>
-                   <%= i.radio_button :is_complete, false, id: "task_user_is_complete_false" %>
-                   <%= i.label :is_complete_false, "未確認", {value: :false, style: "display: inline-block;", for: "task_user_is_complete_false" } %>
-                   <%= i.radio_button :is_complete, true, id: "task_user_is_complete_true" %>
-                   <%= i.label :is_complete_true, "確認済", {value: :true, style: "display: inline-block;", for: "task_user_is_complete_true" } %>
-                <% end %><br>
-            <% end %>
-        </div>
+           <!--管理者ログイン時に完了確認ボタンを表示-->
+           <% if current_user.id == @task.user.id %>
+             <%= i.radio_button :is_complete, false, id: "task_user_is_complete_false" %>
+             <%= i.label :is_complete_false, "未確認", {value: :false, style: "display: inline-block;", for: "task_user_is_complete_false" } %>
+             <%= i.radio_button :is_complete, true, id: "task_user_is_complete_true" %>
+             <%= i.label :is_complete_true, "確認済", {value: :true, style: "display: inline-block;", for: "task_user_is_complete_true" } %>
+          <% end %><br>
+        <% end %>
+      </div>
 
-        <div class="content-bg col-md-7 p-2">
-            <div><%= f.text_field :title, placeholder: "タスクタイトル", maxlength: 21 %></div><br>
-            <div><%= f.text_area :detail, placeholder: "タスク詳細", rows: 10 %></div><br>
-            <div><%= f.submit '　　　編集を保存　　　' %></div>
-       </div>
-  </div>
- <% end %>
+      <div class="content-bg col-md-7 p-2">
+          <div><%= f.text_field :title, placeholder: "タスクタイトル", maxlength: 21 %></div><br>
+          <div><%= f.text_area :detail, placeholder: "タスク詳細", rows: 10 %></div><br>
+          <div><%= f.submit '　　　編集を保存　　　' %></div>
+      </div>
+    </div>
+  <% end %>
 </div>

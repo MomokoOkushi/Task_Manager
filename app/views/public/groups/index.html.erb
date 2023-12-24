@@ -19,7 +19,9 @@
           <table>
             <tr>
               <td><%= link_to my_group.name, public_group_path(my_group) %></td>
-              <td><%= link_to "退会する", public_group_group_user_path(my_group, current_user), method: :delete %></td>
+              <td>
+                <%= link_to "退会する", public_group_group_user_path(my_group, current_user), method: :delete, "data-confirm" => "本当に退会しますか？" %>
+              </td>
             </tr>
           </table>
         <% end %>
@@ -35,7 +37,10 @@
     <div class="col-md-4">
       <div class="content-bg p-2">
         <div class="mb-2">
-          <%= render "/public/searches/form" %>
+          <%= form_with url: public_groups_path, method: :get, local: true do |f| %>
+            <%= f.text_field :content, placeholder: "グループ名で検索" %>
+            <%= f.submit "検索" %>
+          <% end %>
         </div>
         <!--検索結果表示-->
         <% if @content %>

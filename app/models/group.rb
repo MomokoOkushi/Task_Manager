@@ -1,5 +1,4 @@
 class Group < ApplicationRecord
-
   has_many :group_users, dependent: :destroy
   has_many :users , through: :group_users
   has_many :tasks, dependent: :destroy
@@ -10,7 +9,7 @@ class Group < ApplicationRecord
     group_users.exists?(user_id: user.id)
   end
 
-  def self.search_for(content)
+  def self.search_for(content) #検索機能：部分一致のみ
     Group.where('name LIKE ?', '%' + content + '%')
   end
 end

@@ -13,5 +13,4 @@ class Admin::CommentsController < ApplicationController
       redirect_to request.referer
     end
   end
-
 end

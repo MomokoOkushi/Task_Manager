@@ -1,11 +1,16 @@
 <h3 class="center"><%= @task.group.name %>タスク</h3>
-<div  class="container">
+
+<div class="container">
   <div class="row">
       <div class="button-box m-1">
-          <div class="button"><%= link_to "一覧に戻る",admin_group_path(@group) %></div>
+          <div class="button">
+            <%= link_to "一覧に戻る",admin_group_path(@group) %>
+          </div>
       </div>
       <div class="button-box m-1">
-          <div class="button"><%= link_to "タスクを削除する",admin_group_task_path(@group, @task), method: :delete, "data-confirm" => "本当に削除しますか？" %></div>
+          <div class="button">
+            <%= link_to "タスクを削除する",admin_group_task_path(@group, @task), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+          </div>
       </div>
   </div>
   <div class="row p-2">

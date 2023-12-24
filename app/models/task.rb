@@ -4,30 +4,22 @@ class Task < ApplicationRecord
   has_many :comments, dependent: :destroy
   belongs_to :group
   belongs_to :user
-  accepts_nested_attributes_for :task_users
+  accepts_nested_attributes_for :task_users #タスク編集機能において、updateするモデルをネストする
 
+  validates :title, presence: true
 
-  # def task_uses
-  #   TaskUsers.where(task_id: self.id)
-  # end
-
-  # def users
-  #   User.where(id: self.task_users.pluck(:user_id))
-  # end
-
-  def save_task_users(user_ids)
+  def save_task_users(user_ids) #投稿機能において、TaskUserモデルにも一度にtask_userデータを保存する
     task_users.destroy_all
     user_ids.each do |user_id|
       TaskUser.create(user_id: user_id, task_id: id)
     end
   end
+
   def update_task_users(user_ids)
     user_ids.each do |user_id|
     TaskUser.create(user_id: user_id, task_id: id)
     end
   end
-
-  validates :title, presence: true
 end
 
 

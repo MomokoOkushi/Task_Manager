@@ -4,13 +4,18 @@
 </div>
 
 <h3 class="center"><%= @task.group.name %>タスク</h3>
+
 <div  class="container">
   <div class="row">
     <div class="button-box m-1">
-        <div class="button"><%= link_to "一覧に戻る",public_group_path(@group) %><br></div>
+        <div class="button">
+          <%= link_to "一覧に戻る",public_group_path(@group) %><br>
+        </div>
     </div>
     <div class="button-box m-1">
-        <div class="button">  <%= link_to "タスクを編集する",edit_public_group_task_path(@group, @task) %></div>
+        <div class="button">
+          <%= link_to "タスクを編集する",edit_public_group_task_path(@group, @task) %>
+        </div>
     </div>
   </div>
   <div class="row p-2">
@@ -25,5 +30,6 @@
       <div id="new_comment">
         <%= render "public/comments/comment_form", {task: @task, comment: @comment}%>
       </div>
+    </div>
   </div>
 </div>

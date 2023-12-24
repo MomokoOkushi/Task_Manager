@@ -1,7 +1,11 @@
 <h3 class="center m-4">一般アカウント一覧</h3>
+
 <div class="button-box mx-auto m-2">
-    <div class="button"><%= link_to "アカウント新規登録", new_user_registration_path %></div>
+    <div class="button">
+      <%= link_to "アカウント新規登録", new_user_registration_path %>
+    </div>
 </div>
+
 <div class="center">
   <table class="content-bg">
     <thead>
@@ -17,7 +21,7 @@
       <tbody>
         <tr>
           <td><%= user.id %></td>
-          <td><%= link_to user.name, admin_user_path(user)%></td>
+          <td><%= link_to user.name, admin_user_path(user) %></td>
           <td><%= user.department %></td>
           <td><%= user.email %></td>
           <td class="button-box m-1">
@@ -26,7 +30,7 @@
             </div>
           </td>
         </tr>
-      </ybody>
+      </tbody>
     <% end %>
   </table>
 </div>

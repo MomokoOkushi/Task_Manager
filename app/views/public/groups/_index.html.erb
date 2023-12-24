@@ -11,10 +11,10 @@
         <% end %>
       </td>
       <td>
-        <!--管理者ログイン時は表示なし-->
         <% if admin_signed_in?%>
-        <!--ユーザーログイン時  -->
+        <!--管理者ログイン時は表示なし-->
         <% elsif user_signed_in? %>
+          <!--ユーザーログイン時  -->
           <% if group.includesUser?(current_user) %>
             ：参加済
           <% else %>

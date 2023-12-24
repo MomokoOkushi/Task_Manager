@@ -18,16 +18,16 @@ class Public::GroupsController < ApplicationController
     @my_groups = current_user.groups
     @groups = Group.all
     @group = Group.new
-    @content = params[:content]
+    @content = params[:content] #検索フォームにパラメーターが送られたら、検索結果をページ内に表示する
     if @content
       @records = Group.search_for(params[:content])
     end
   end
 
-  def show
+  def show #グループ詳細画面(グループタスク一覧を兼ねる)
     @group = Group.find(params[:id])
     @tasks = @group.tasks.includes(:users)
-    @calendar_type = params[:calendar_type]
+    @calendar_type = params[:calendar_type] #ページ内のクエリパラメータを受け取り、タスクの表示形式を切り替える
   end
 
   def update

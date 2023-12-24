@@ -2,9 +2,13 @@
     <h3 class="center"><%= @group.name %>のタスク一覧</h3>
     <div class="row m-1">
         <div class="button-box m-1">
-            <div class="button"><%= link_to "グループを削除する",admin_group_path(@group), method: :delete %></div>
+            <div class="button">
+                <%= link_to "グループを削除する",admin_group_path(@group), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+            </div>
         </div>
     </div>
+
+    <!--グループタスク一覧-->
     <div class="row m-1">
          <div class="content-bg">
             <%= render 'public/groups/group_tasks_index', tasks: @tasks, group: @group %>

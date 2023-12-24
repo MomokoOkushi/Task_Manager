@@ -1,7 +1,6 @@
 class Public::MessagesController < ApplicationController
   before_action :authenticate_user!
 
-
   def create
     @message = Message.new(message_params)
     @message.send_user_id = current_user.id
@@ -19,7 +18,7 @@ class Public::MessagesController < ApplicationController
     end
   end
 
-  def message
+  def message #１対１のDM画面
     @message = Message.new
     @messages = Message.where(send_user_id: current_user.id,
                               receive_user_id: params[:id]).or(@receive_messages = Message.where(send_user_id: params[:id],

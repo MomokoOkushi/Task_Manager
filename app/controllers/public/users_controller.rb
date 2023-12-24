@@ -1,13 +1,13 @@
 class Public::UsersController < ApplicationController
   before_action :authenticate_user!
 
-  def show #詳細画面も兼ねる
+  def show #編集画面も兼ねる
     @user = User.find(current_user.id)
   end
 
   def index
     @users = User.all
-    @content = params[:content]
+    @content = params[:content] #検索フォームからパラメーターが送られた場合に検索結果を表示する
     if @content
       @records = User.search_for(params[:content])
     end

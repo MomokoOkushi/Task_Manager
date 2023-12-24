@@ -3,7 +3,7 @@
 
 <h3 class="center m-4">登録情報</h3>
 <div class="center">
-  <%= form_with model: @user, url:public_user_path(@user), method: :patch do |f| %>
+  <%= form_with model: @user, url: public_user_path(@user), method: :patch do |f| %>
     <div><%= f.text_field :name, maxlength: 21 %></div><br>
     <div><%= f.text_field :department, placeholder: "所属", maxlength: 21 %></div><br>
     <div><%= f.submit "　　　情報を更新　　　" %><div>

@@ -9,8 +9,8 @@ class Public::TasksController < ApplicationController
   def create
     @task = Task.new(new_task_params)
     @group = Group.find(params[:group_id])
-    @task.group_id = @group.id
-    @task.user_id = current_user.id
+    @task.group_id = @group.id                #tasksテーブルのグループIDカラムに現在のグループIDを割り当てる
+    @task.user_id = current_user.id           #tasksテーブルのユーザーIDカラムには、タスク作成者としてログイン中のユーザーIDを割り当てる
     if @task.save
       @task.save_task_users(params[:user_ids])
       flash[:notice] = "新しいタスクを作成しました"
@@ -24,20 +24,19 @@ class Public::TasksController < ApplicationController
   def show
     @task = Task.find(params[:id])
     @group = @task.group
-    @task_statuses = TaskUser.where(user_ids: @group.users)
+    @task_statuses = TaskUser.where(user_ids: @group.users) #複数人のタスク担当者の進捗状況のデータを取得
     @comment = Comment.new
   end
 
-  def my_tasks
+  def my_tasks #ログイン中ユーザーのタスク一覧
     @task_users = TaskUser.where(user_id: current_user.id)
     @tasks = Task.includes(:task_users).where(task_users: {user_id: current_user.id})
-    @calendar_type = params[:calendar_type]
+    @calendar_type = params[:calendar_type] #ページ内のクエリパラメータを受け取り、タスクの表示形式を切り替える
   end
 
   def edit
     @task = Task.find(params[:id])
     @group = @task.group
-
   end
 
   def update

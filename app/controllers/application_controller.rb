@@ -7,6 +7,7 @@ class ApplicationController < ActionController::Base
       admin_homes_top_path
     end
   end
+
   def after_sign_up_path_for(user)
     admin_users_path
   end

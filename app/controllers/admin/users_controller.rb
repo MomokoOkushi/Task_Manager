@@ -10,6 +10,7 @@ class Admin::UsersController < ApplicationController
     @user_groups = Group.includes(:group_users).where(group_users: {user_id: @user.id})
     @user_tasks = Task.includes(:task_users).where(task_users: {user_id: @user.id})
   end
+
   def destroy
     user = User.find(params[:id])
     if user.destroy

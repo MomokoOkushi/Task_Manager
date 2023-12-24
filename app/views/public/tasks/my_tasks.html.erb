@@ -3,6 +3,7 @@
     <h5>表示切り替え</h5>
 </div>
 <div class="center">
+    <!--表示形式をクエリパラメーターとしてコントローラーに送信し、ページ下で形式ごとにタスクを表示する-->
     <%= link_to "一覧",public_my_tasks_path(current_user) %>|
     <%= link_to "カレンダー", public_my_tasks_path(current_user,calendar_type: "calendar") %>|
     <%= link_to "ウィークリー", public_my_tasks_path(current_user,calendar_type: "weekly") %>

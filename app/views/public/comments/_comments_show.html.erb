@@ -6,6 +6,7 @@
         <%= comment.message %><br>
       </div>
       <% if admin_signed_in? %>
+        <!--管理者がログインしている場合のみ削除ボタンを表示する-->
         <div>
           <div><%= link_to "コメントを削除する", admin_group_task_comment_path(group, task, comment), method: :delete, "data-confirm" => "本当に削除しますか？" %></div>
         </div>
