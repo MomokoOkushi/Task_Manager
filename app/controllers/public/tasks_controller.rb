@@ -65,9 +65,10 @@ class Public::TasksController < ApplicationController
 
   private
     def new_task_params
-      params.permit(:title, :detail, :start_time)
+      params.permit(:title, :detail, :start_time) #複数のテーブルに一度に保存するため、モデルの記述削除
     end
     def update_task_params
+      #タスクモデルに紐づけられたtask_usersテーブルのカラムに保存するため、task_users_attributesを使用。
       params.require(:task).permit(:title, :detail, :start_time, task_users_attributes:[:task_status, :is_complete, :id])
     end
 end
