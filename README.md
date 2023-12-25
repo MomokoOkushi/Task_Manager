@@ -32,14 +32,15 @@
 
 - メール等で伝わったタスクを一覧やカレンダー形式でまとめたい時
 - 引き受けたタスクの進捗状況を記録・1人以上の関係者に共有したい時
-- 自分のタスクをカテゴリーごとに管理したい時
 - 仕事を割り振った管理者が、担当者1人1人の履行状況を把握したい時
 - チームメンバーのタスク進捗状況や抱えている仕事量を把握したい時
 - タスク担当者とタスク管理者の間でタスクについての評価や補足のコメントをつけたい時
 - タスクの完了報告を相手の時間を取らせず簡単に終わらせたい時
 
 ## 設計書
-​
+- ER図(https://app.diagrams.net/#G1E_OmLw8z73XNdKLJM4JYtbBH5HktijOe)
+- 詳細設計(https://docs.google.com/spreadsheets/d/1uTSIgSF1wwd6oWe5IS-ht85U8ZasCiuTfp3hyfm5MYs/edit#gid=326364871)
+
 ## 開発環境
 - OS：Linux(CentOS)
 - 言語：HTML,CSS,JavaScript,Ruby,SQL

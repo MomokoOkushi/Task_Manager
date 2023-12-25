@@ -30,14 +30,6 @@ class Public::GroupsController < ApplicationController
     @calendar_type = params[:calendar_type] #ページ内のクエリパラメータを受け取り、タスクの表示形式を切り替える
   end
 
-  def update
-    if @group.save
-      redirect_to public_group_path
-    else
-      render 'edit'
-    end
-  end
-
   private
     def group_params
       params.require(:group).permit(:name)
