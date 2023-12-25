@@ -77,8 +77,8 @@ main{
 }
 
 .long_button_box{
-    display: flex; /* Flexboxの利用 */
-    justify-content: center; /* 子要素の横並び・中央寄せ */
+    display: flex;
+    justify-content: center;
     background-color: #D4D4D4;
     margin: 10px auto;
     line-height: 30px;
@@ -95,20 +95,20 @@ main{
 }
 
 .field{
-    display: flex; /* Flexboxの利用 */
-    justify-content: center; /* 子要素の横並び・中央寄せ */
+    display: flex;
+    justify-content: center;
     margin: 15px;
 }
 
 .actions{
-    display: flex; /* Flexboxの利用 */
-    justify-content: center; /* 子要素の横並び・中央寄せ */
+    display: flex;
+    justify-content: center;
 }
 
 // グループタスク一覧
 .button-box{
-    display: flex; /* Flexboxの利用 */
-    justify-content: center; /* 子要素の横並び・中央寄せ */
+    display: flex;
+    justify-content: center;
     background-color: #D4D4D4;
     width: 160px
 }
@@ -119,8 +119,8 @@ main{
 
 // タスク詳細
 .task-box{
-    display: flex; /* Flexboxの利用 */
-    justify-content: center; /* 子要素の横並び・中央寄せ */
+    display: flex;
+    justify-content: center;
 }
 
 .comment-message{
@@ -132,5 +132,5 @@ main{
 // グループ一覧
 .group-form{
     wigth: 100px;
-    display: flex; /* Flexboxの利用 */
+    display: flex;
 }

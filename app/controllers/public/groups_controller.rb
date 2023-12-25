@@ -18,6 +18,7 @@ class Public::GroupsController < ApplicationController
     @my_groups = current_user.groups #ログインユーザーが参加しているグループ
     @groups = Group.all
     @group = Group.new
+    
     #検索フォームにパラメーターが送られた場合、検索結果をページ内に表示する
     @content = params[:content]
     if @content
