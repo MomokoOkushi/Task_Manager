@@ -8,6 +8,7 @@ class Public::TasksController < ApplicationController
 
   def create
     @task = Task.new(new_task_params)
+    @task.score = Language.get_data(new_task_params[:detail]) #自然言語処理APIから返ってきた値を保存
     @group = Group.find(params[:group_id])
     @task.group_id = @group.id                #tasksテーブルのグループIDカラムに現在のグループIDを割り当てる
     @task.user_id = current_user.id           #tasksテーブルのユーザーIDカラムには、タスク作成者としてログイン中のユーザーIDを割り当てる

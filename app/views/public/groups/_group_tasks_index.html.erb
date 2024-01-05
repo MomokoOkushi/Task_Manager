@@ -14,6 +14,7 @@
                     <!--タスク名にリンクをつけて表示-->
                     <% if admin_signed_in? %>
                         <%= link_to task.title, admin_group_task_path(group, task) %>
+                        <%= task.score %>
                     <% elsif user_signed_in? %>
                         <%= link_to task.title, public_group_task_path(group, task) %>
                     <% end %>
