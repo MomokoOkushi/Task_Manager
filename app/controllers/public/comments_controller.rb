@@ -4,6 +4,7 @@ class Public::CommentsController < ApplicationController
   def create
     @task = Task.find(params[:task_id])
     @comment = current_user.comments.new(comment_params)
+    @comment.score = Language.get_data(comment_params[:message])
     @comment.task_id = @task.id
     @comment.save
   end

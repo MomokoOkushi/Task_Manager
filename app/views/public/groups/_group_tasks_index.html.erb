@@ -13,8 +13,20 @@
                 <td>
                     <!--タスク名にリンクをつけて表示-->
                     <% if admin_signed_in? %>
-                        <%= link_to task.title, admin_group_task_path(group, task) %>
-                        <%= task.score %>
+                        <div>
+                            <%= link_to task.title, admin_group_task_path(group, task) %>
+                            <% if task.score.present? && task.score < 0 && task.score >= -0.4%>
+                                <i class="fa-solid fa-heart-circle-exclamation" style="color:orange;"></i>
+                            <% elsif task.score.present? && task.score < -0.4 %>
+                                <i class="fa-solid fa-heart-crack" style="color:red;"></i>
+                            <% end %>
+
+                          　<% if task.comments.scores.present? && task.comments.score < 0 && task.comments.score >= -0.4 %>
+                                <i class="fa-solid fa-heart-circle-exclamation" style="color:orange;"></i>
+                          　<% elsif task.comments.scores.present? && task.comments.score < -0.4 %>
+                                <i class="fa-solid fa-heart-crack" style="color:red;"></i>
+                            <% end %>
+                        </div>
                     <% elsif user_signed_in? %>
                         <%= link_to task.title, public_group_task_path(group, task) %>
                     <% end %>
