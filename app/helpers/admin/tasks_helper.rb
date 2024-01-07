@@ -29,13 +29,13 @@ module Admin::TasksHelper
     score < -0.4
   end
 
-  def comment_is_negative?(comment)
+  def comment_is_negative?(comment)  #感情分析スコアが-0.4以上０未満の時
     score = comment.score
     return false unless score
     score < 0 && score >= -0.4
   end
 
-  def comment_is_more_negative?(comment)
+  def comment_is_more_negative?(comment) #感情分析スコアが-0.4より低い時
     score = comment.score
     return false unless score
     score < -0.4  end
