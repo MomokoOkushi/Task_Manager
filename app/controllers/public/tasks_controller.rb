@@ -42,9 +42,10 @@ class Public::TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
+    @task.score = Language.get_data(update_task_params[:detail]) #自然言語処理APIから返ってきた値を保存
     if @task.update(update_task_params)
       redirect_to public_group_task_path(@task.group, @task)
-       flash[:success] = "タスクが正常に更新されました。"
+      flash[:success] = "タスクが正常に更新されました。"
     else
       flash[:notice] = "タスクの更新に失敗しました。もう一度更新してください"
       render 'edit'

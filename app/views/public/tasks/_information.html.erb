@@ -41,9 +41,9 @@
   <div class="task-box">
     <%= task.title %>
     <% if admin_signed_in? %>
-      <% if task.score.present? && task.score < 0 && task.score >= -0.4 %>
+      <% if task_has_negative_word?(task) %>
           <i class="fa-solid fa-heart-circle-exclamation" style="color:orange;">(<%= task.score %>)</i>
-      <% elsif task.score.present? && task.score < -0.4 %>
+      <% elsif task_has_more_negative_word?(task) %>
           <i class="fa-solid fa-heart-crack" style="color:red;">(<%= task.score %>)</i>
       <% end %>
     <% end %>

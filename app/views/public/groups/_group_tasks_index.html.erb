@@ -11,19 +11,19 @@
             <tr>
                 <td><%= task.start_time.strftime("%Y年%-m月%-d日 %-H時%-M分") %></td>
                 <td>
-                    <!--タスク名にリンクをつけて表示-->
                     <% if admin_signed_in? %>
                         <div>
                             <%= link_to task.title, admin_group_task_path(group, task) %>
-                            <% if task.score.present? && task.score < 0 && task.score >= -0.4%>
+                            <!--タスクとコメントの感情分析スコアが低い場合にアイコンを表示-->
+                            <% if task_has_negative_word?(task) %>
                                 <i class="fa-solid fa-heart-circle-exclamation" style="color:orange;"></i>
-                            <% elsif task.score.present? && task.score < -0.4 %>
-                                <i class="fa-solid fa-heart-crack" style="color:red;"></i>
+                            <% elsif task_has_more_negative_word?(task) %>
+                                <i class="fa-solid fa-heart-crack" style="color:red;"></i></i>
                             <% end %>
 
-                          　<% if task.comments.scores.present? && task.comments.score < 0 && task.comments.score >= -0.4 %>
+                          　<% if task_has_negative_comments?(task) %>
                                 <i class="fa-solid fa-heart-circle-exclamation" style="color:orange;"></i>
-                          　<% elsif task.comments.scores.present? && task.comments.score < -0.4 %>
+                          　<% elsif task_has_more_negative_comments?(task) %>
                                 <i class="fa-solid fa-heart-crack" style="color:red;"></i>
                             <% end %>
                         </div>
