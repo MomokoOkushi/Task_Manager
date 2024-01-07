@@ -11,6 +11,7 @@ class Public::UsersController < ApplicationController
     if @content
       @records = User.search_for(params[:content])
     end
+    @new_messages = Message.where(receive_user_id: current_user.id).order(created_at: :desc).limit(100)
   end
 
   def update

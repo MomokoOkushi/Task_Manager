@@ -2,17 +2,30 @@
 <div class="row">
   <div class="col-md-5 offset-1">
     <div class="content-bg m-1">
-      <!--ユーザー一覧-->
-      <%= render 'index', users: @users %>
+      <!--新着メッセージ-->
+      <div class= "center">
+        <h5 class="center m-2">新着メッセージ</h5><br>
+      </div>
+      <table>
+        <% @new_messages.each |message| %>
+          <tr>
+            <td>
+              
+            </td>
+          </tr>
+        <% end %>
+      </table>
     </div>
   </div>
   <div class="col-md-5 p-1">
     <div class="content-bg m-1 p-2">
       <!--検索フォーム-->
-      <%= form_with url: public_users_path, method: :get, local: true do |f| %>
-        <%= f.text_field :content, placeholder: "名前で検索" %>
-        <%= f.submit "検索" %>
-      <% end %>
+      <div class= "center">
+        <%= form_with url: public_users_path, method: :get, local: true do |f| %>
+          <%= f.text_field :content, placeholder: "名前で検索" %>
+          <%= f.submit "検索" %>
+        <% end %>
+      </div>
 
       <!--検索結果表示-->
       <% if @content %>
@@ -23,6 +36,15 @@
           </div>
         </div>
       <% end %>
+      <!--ユーザー一覧-->
+      <div class= "center">
+        <h5 class="center m-2">宛先一覧</h5><br>
+      </div>
+      <div class= "center">
+        <div>
+          <%= render 'index', users: @users %>
+        </div>
+      </div>
     </div>
   </div>
 </div>

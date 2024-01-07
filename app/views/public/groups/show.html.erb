@@ -1,45 +1,45 @@
-<div class="container">
-    <h3 class="center"><%= @group.name %>のタスク一覧</h3>
-
-    <div class="center">
-        <h5>表示切り替え</h5>
-    </div>
-
-    <div class="center">
-        <!--表示形式をクエリパラメーターとしてコントローラーに送信し、ページ下で形式ごとにタスクを表示する-->
-        <%= link_to "一覧",public_group_path(@group) %>|
-        <%= link_to "カレンダー",public_group_path(@group,calendar_type: "calendar") %>|
-
-        <%= link_to "ウィークリー", public_group_path(@group,calendar_type: "weekly") %>
-    </div>
-    <div class="center">
-        <div class="button-box m-1">
-            <div class="button"><%= link_to "グループタスクを作成",new_public_group_task_path(@group) %></div>
-        </div>
-    </div>
-
-    <!--表示形式ごとにタスクを表示する-->
-    <% if @calendar_type == "calendar" %>
-        <!--カレンダー表示-->
-        <div class="content-bg">
-            <%= month_calendar(events: @tasks) do |date, tasks| %>
-                <%= date.day %><br>
-                <% tasks.each do |task| %>
-                    <%= link_to task.title, public_group_task_path(task.group_id, task) %><br>
-                <% end %>
-            <% end %>
-        </div>
-    <% elsif @calendar_type == "weekly" %>
-        <!--1週間別表示-->
-        <div class="content-bg">
-            <%= render 'public/groups/weekly_tasks', tasks: @tasks %>
-        </div>
-    <% else %>
-        <!--一覧表示-->
-        <div class="center">
-            <div class="content-bg">
-                <%= render 'public/groups/group_tasks_index', tasks: @tasks, group: @group %>
-            </div>
-        </div>
-    <% end %>
+<div class="center">
+    <h3 class="page-title m-4"><%= @group.name %>のタスク一覧</h3>
 </div>
+
+<div class="center">
+    <h5>表示切り替え</h5>
+</div>
+
+<div class="center">
+    <!--表示形式をクエリパラメーターとしてコントローラーに送信し、ページ下で形式ごとにタスクを表示する-->
+    <%= link_to "一覧",public_group_path(@group) %>|
+    <%= link_to "カレンダー",public_group_path(@group,calendar_type: "calendar") %>|
+
+    <%= link_to "ウィークリー", public_group_path(@group,calendar_type: "weekly") %>
+</div>
+<div class="center">
+    <div class="button-box m-1">
+        <div class="button"><%= link_to "グループタスクを作成",new_public_group_task_path(@group) %></div>
+    </div>
+</div>
+
+<!--表示形式ごとにタスクを表示する-->
+<% if @calendar_type == "calendar" %>
+    <!--カレンダー表示-->
+    <div class="content-bg">
+        <%= month_calendar(events: @tasks) do |date, tasks| %>
+            <%= date.day %><br>
+            <% tasks.each do |task| %>
+                <%= link_to task.title, public_group_task_path(task.group_id, task) %><br>
+            <% end %>
+        <% end %>
+    </div>
+<% elsif @calendar_type == "weekly" %>
+    <!--1週間別表示-->
+    <div class="content-bg">
+        <%= render 'public/groups/weekly_tasks', tasks: @tasks %>
+    </div>
+<% else %>
+    <!--一覧表示-->
+    <div class="center">
+        <div class="content-bg">
+            <%= render 'public/groups/group_tasks_index', tasks: @tasks, group: @group %>
+        </div>
+    </div>
+<% end %>
