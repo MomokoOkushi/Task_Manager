@@ -8,6 +8,7 @@ class Public::TasksController < ApplicationController
 
   def create
     @task = Task.new(new_task_params)
+    @task.score = Language.get_data(new_task_params[:detail]) #自然言語処理APIから返ってきた値を保存
     @group = Group.find(params[:group_id])
     @task.group_id = @group.id                #tasksテーブルのグループIDカラムに現在のグループIDを割り当てる
     @task.user_id = current_user.id           #tasksテーブルのユーザーIDカラムには、タスク作成者としてログイン中のユーザーIDを割り当てる
@@ -41,9 +42,10 @@ class Public::TasksController < ApplicationController
 
   def update
     @task = Task.find(params[:id])
+    @task.score = Language.get_data(update_task_params[:detail]) #自然言語処理APIから返ってきた値を保存
     if @task.update(update_task_params)
       redirect_to public_group_task_path(@task.group, @task)
-       flash[:success] = "タスクが正常に更新されました。"
+      flash[:success] = "タスクが正常に更新されました。"
     else
       flash[:notice] = "タスクの更新に失敗しました。もう一度更新してください"
       render 'edit'

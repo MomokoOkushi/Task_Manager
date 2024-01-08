@@ -28,10 +28,10 @@ Rails.application.routes.draw do
     resources :users, only: [:index, :update]
     resources :messages, only: [:create]
     get 'messages/:id' => 'messages#message', as: 'message'
-    resources :groups, only: [:new, :create, :index, :show] do
+    resources :groups, only: [:create, :index, :show] do
       resources :group_users, only: [:create, :destroy]
       resources :tasks, only: [:new, :create, :show, :edit, :update, :destroy] do
-        resources :comments, only: [:create, :destroy]
+        resources :comments, only: [:create]
       end
     end
   end

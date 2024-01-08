@@ -17,6 +17,32 @@
     background-color: #FAFFFF
 }
 
+.page-title{
+    position: relative;
+    display: inline-block;
+    padding: 0 65px;
+    text-align: center;
+}
+
+.page-title:before,
+.page-title:after {
+    position: absolute;
+    top: calc(50% - 3px);
+    width: 50px;
+    height: 6px;
+    content: '';
+    border-top: solid 2px #000;
+    border-bottom: solid 2px #000;
+}
+
+.page-title:before {
+    left: 0;
+}
+
+.page-title:after {
+    right: 0;
+}
+
 main{
     width: auto;
     height: 900px;

@@ -1,7 +1,9 @@
 <!--エラーメッセージ-->
 <%= render "public/shared/error_messages", resource: @user %>
 
-<h3 class="center m-4">登録情報</h3>
+<div class="center">
+  <h3 class="page-title m-4">登録情報</h3>
+</div>
 <div class="center">
   <%= form_with model: @user, url: public_user_path(@user), method: :patch do |f| %>
     <div><%= f.text_field :name, maxlength: 21 %></div><br>

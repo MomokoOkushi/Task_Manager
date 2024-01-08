@@ -1,4 +1,6 @@
-<h3 class="center m-4">一般アカウント一覧</h3>
+<div class="center">
+  <h3 class="page-title m-4">一般アカウント一覧</h3>
+</div>
 
 <div class="button-box mx-auto m-2">
     <div class="button">
@@ -24,11 +26,6 @@
           <td><%= link_to user.name, admin_user_path(user) %></td>
           <td><%= user.department %></td>
           <td><%= user.email %></td>
-          <td class="button-box m-1">
-            <div class="button">
-              <%= link_to "削除", admin_user_path(user), method: :delete, "data-confirm" => "本当に削除しますか？" %>
-            </div>
-          </td>
         </tr>
       </tbody>
     <% end %>

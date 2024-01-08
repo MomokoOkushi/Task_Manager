@@ -2,15 +2,28 @@
   <div class="comments_index">
     <% task.comments.each do |comment| %>
       <div class="comment-message">
-        <%= comment.user.name %>　<%= comment.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分") %><br>
-        <%= comment.message %><br>
+        <%= comment.user.name %>
+        <%= comment.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分") %>
+        <% if admin_signed_in? %>
+          <!--コメント内容の感情スコアを表示させる-->
+          <% if comment_is_negative?(comment) %>
+            <i class="fa-solid fa-heart-circle-exclamation" style="color:orange;">(<%= comment.score %>)</i>
+          <% elsif comment_is_more_negative?(comment) %>
+            <i class="fa-solid fa-heart-crack" style="color:red;">(<%= comment.score %>)</i>
+          <% end %>
+        <% end %>
+        <br>
+          <%= comment.message %>
+        </br>
+        <% if admin_signed_in? %>
+          <!--管理者がログインしている場合のみ削除ボタンを表示する-->
+          <div class="button-box ml-auto">
+            <div class="button">
+              <%= link_to "コメントを削除する", admin_group_task_comment_path(group, task, comment), method: :delete, "data-confirm" => "本当に削除しますか？" %>
+            </div>
+          </div>
+        <% end %>
       </div>
-      <% if admin_signed_in? %>
-        <!--管理者がログインしている場合のみ削除ボタンを表示する-->
-        <div>
-          <div><%= link_to "コメントを削除する", admin_group_task_comment_path(group, task, comment), method: :delete, "data-confirm" => "本当に削除しますか？" %></div>
-        </div>
-      <% end %>
     <% end %>
   </div>
 <% else %>

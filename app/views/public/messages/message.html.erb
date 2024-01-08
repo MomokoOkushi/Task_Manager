@@ -3,7 +3,9 @@
   <%= render "public/shared/error_messages", resource: @message %>
 </div>
 
-<h3><%= @receive_user.name %>さんとのメッセージ</h3>
+<div class="center">
+  <h3 class="page-title m-4"><%= @receive_user.name %>さんとのメッセージ</h3>
+</div>
 
 <div id="messages">
   <%= render 'messages', messages: @messages %>

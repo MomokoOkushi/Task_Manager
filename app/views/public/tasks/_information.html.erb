@@ -39,7 +39,16 @@
 
 <div class="col content-bg">
   <div class="task-box">
-    <%= task.title %><br>
+    <%= task.title %>
+    <% if admin_signed_in? %>
+      <% if task_has_negative_word?(task) %>
+          <i class="fa-solid fa-heart-circle-exclamation" style="color:orange;">(<%= task.score %>)</i>
+      <% elsif task_has_more_negative_word?(task) %>
+          <i class="fa-solid fa-heart-crack" style="color:red;">(<%= task.score %>)</i>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="task-box">
     <%= task.detail %>
   </div>
 </div>
