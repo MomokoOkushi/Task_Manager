@@ -8,7 +8,7 @@
       </div>
       <div class= "center">
         <table>
-          <% @new_messages.each do |message| %>
+          <% @ordered_messages.each do |message| %>
             <tr>
               <td>
                 <%= link_to message.send_user.name, public_message_path(message.send_user) %>：

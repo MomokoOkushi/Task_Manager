@@ -11,7 +11,8 @@ class Public::UsersController < ApplicationController
     if @content
       @records = User.search_for(params[:content])
     end
-    @new_messages = Message.where(receive_user_id: current_user.id).order(created_at: :desc).limit(100)
+    #送信者名の重複を防いだ状態で新着メッセージを取り出す。(Message.rbにて定義)
+    @ordered_messages = Message.received_latest_messages(current_user)
   end
 
   def update
