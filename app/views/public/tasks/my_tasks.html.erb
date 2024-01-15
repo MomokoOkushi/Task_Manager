@@ -6,9 +6,9 @@
 </div>
 <div class="center">
     <!--表示形式をクエリパラメーターとしてコントローラーに送信し、ページ下で形式ごとにタスクを表示する-->
-    <%= link_to "一覧",public_my_tasks_path(current_user) %>|
-    <%= link_to "カレンダー", public_my_tasks_path(current_user,calendar_type: "calendar") %>|
-    <%= link_to "ウィークリー", public_my_tasks_path(current_user,calendar_type: "weekly") %>
+    <%= link_to "一覧",public_my_tasks_path(current_user), class: "text-dark" %>|
+    <%= link_to "カレンダー", public_my_tasks_path(current_user,calendar_type: "calendar"), class: "text-dark" %>|
+    <%= link_to "ウィークリー", public_my_tasks_path(current_user,calendar_type: "weekly"), class: "text-dark" %>
 </div>
 
 <!--表示形式ごとにタスクを表示する-->
@@ -18,7 +18,7 @@
       <%= month_calendar(events: @tasks) do |date, tasks| %>
           <%= date.day %><br>
           <% tasks.each do |task| %>
-              <%= link_to task.title, public_group_task_path(task.group_id, task) %><br>
+              <%= link_to task.title, public_group_task_path(task.group_id, task), class: "text-dark" %><br>
           <% end %>
       <% end %>
   </div>
@@ -43,7 +43,7 @@
           <% @task_users.each do |task_user| %>
               <tr>
                   <td><%= task_user.task.start_time.strftime("%Y年%-m月%-d日 %-H時%-M分") %></td>
-                  <td><%= link_to task_user.task.title, public_group_task_path(task_user.task.group_id, task_user.task) %></td>
+                  <td><%= link_to task_user.task.title, public_group_task_path(task_user.task.group_id, task_user.task), class: "text-dark" %></td>
                   <td><%= I18n.t("enums.task_user.task_status.#{task_user.task_status}") %></td>
               </tr>
           <% end %>
