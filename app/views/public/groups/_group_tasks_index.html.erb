@@ -13,7 +13,7 @@
                 <td>
                     <% if admin_signed_in? %>
                         <div>
-                            <%= link_to task.title, admin_group_task_path(group, task) %>
+                            <%= link_to task.title, admin_group_task_path(group, task), class: "text-dark" %>
                             <!--タスクとコメントの感情分析スコアが低い場合にアイコンを表示-->
                             <% if task_has_negative_word?(task) %>
                                 <i class="fa-solid fa-heart-circle-exclamation" style="color:orange;"></i>
@@ -28,7 +28,7 @@
                             <% end %>
                         </div>
                     <% elsif user_signed_in? %>
-                        <%= link_to task.title, public_group_task_path(group, task) %>
+                        <%= link_to task.title, public_group_task_path(group, task), class: "text-dark"  %>
                     <% end %>
                 </td>
                 <% task.task_users.each do |task_user|%>
