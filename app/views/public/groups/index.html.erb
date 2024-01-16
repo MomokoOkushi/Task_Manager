@@ -3,7 +3,7 @@
 
 <div class="container">
   <div class="group-form mt-5 mb-2">
-    <h5>グループを作成　</h5>
+    <h5>新いグループを作成　</h5>
     <%= form_with model: @group, url: public_groups_path do |f| %>
       <div class="group-form">
         <%= f.text_field :name, placeholder: "新しいグループ名", maxlength: 30 %>
