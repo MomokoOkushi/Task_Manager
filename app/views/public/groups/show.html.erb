@@ -8,10 +8,10 @@
 
 <div class="center">
     <!--表示形式をクエリパラメーターとしてコントローラーに送信し、ページ下で形式ごとにタスクを表示する-->
-    <%= link_to "一覧",public_group_path(@group) %>|
-    <%= link_to "カレンダー",public_group_path(@group,calendar_type: "calendar") %>|
+    <%= link_to "一覧",public_group_path(@group), class: "text-dark" %>|
+    <%= link_to "カレンダー",public_group_path(@group,calendar_type: "calendar"), class: "text-dark" %>|
 
-    <%= link_to "ウィークリー", public_group_path(@group,calendar_type: "weekly") %>
+    <%= link_to "ウィークリー", public_group_path(@group,calendar_type: "weekly"), class: "text-dark" %>
 </div>
 <div class="center">
     <div class="button-box m-1">
@@ -26,7 +26,7 @@
         <%= month_calendar(events: @tasks) do |date, tasks| %>
             <%= date.day %><br>
             <% tasks.each do |task| %>
-                <%= link_to task.title, public_group_task_path(task.group_id, task) %><br>
+                <%= link_to task.title, public_group_task_path(task.group_id, task), class: "text-dark" %><br>
             <% end %>
         <% end %>
     </div>

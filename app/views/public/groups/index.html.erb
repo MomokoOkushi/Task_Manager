@@ -18,7 +18,7 @@
         <% @my_groups.each do |my_group| %>
           <table>
             <tr>
-              <td><%= link_to my_group.name, public_group_path(my_group) %></td>
+              <td><%= link_to my_group.name, public_group_path(my_group), class: "text-dark" %></td>
               <td>
                 <%= link_to "退会する", public_group_group_user_path(my_group, current_user), method: :delete, "data-confirm" => "本当に退会しますか？" %>
               </td>
