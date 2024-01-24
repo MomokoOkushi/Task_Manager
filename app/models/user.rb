@@ -13,8 +13,6 @@ class User < ApplicationRecord
   has_many :received_massages, class_name:"Message", foreign_key:"receive_user", dependent: :destroy  #DM機能のリレーション：DM受信者IDを区別する
 
   validates :name, presence: true
-  validates :email, presence: true
-  validates :encrypted_password, presence: true
 
   def self.search_for(content)  #検索機能：部分一致のみ
       User.where('name LIKE ?', '%' + content + '%')
