@@ -47,7 +47,7 @@ ja:
     failure:
       user:
         not_found_in_database: "一致するユーザーが見つかりませんでした。"
-        already_authenticated: "すでにログイン済みです"
+        already_authenticated: "すでに登録されています"
       admin:
         not_found_in_database: "一致するアカウント情報が見つかりませんでした。"
       invalid: "一致するアカウント情報が見つかりませんでした。"
@@ -82,4 +82,9 @@ ja:
     template:
       body: 次の項目を確認してください
       header: "%{model}に%{count}個のエラーが発生しました"
-
+  activerecord:
+    attributes:
+      user:
+        email: メールアドレス
+        password: パスワード
+        name: 氏名

@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
 
-#ユーザー登録を行えるのはadminのみにしたい。この場合は？今は誰でも可能の状態
   devise_for :admin, skip: [:passwords], controllers: {
   sessions: "admin/sessions",
 }
