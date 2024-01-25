@@ -88,3 +88,7 @@ ja:
         email: メールアドレス
         password: パスワード
         name: 氏名
+      task:
+        title: タスクタイトル
+      comment:
+        message: コメント内容
