@@ -19,7 +19,7 @@ class Public::UsersController < ApplicationController
     @user = User.find(current_user.id)
      if @user.update(user_params)
       flash[:success] = "正常に更新されました。"
-      redirect_to request.referer
+      redirect_to public_my_page_path
      else
       flash[:notice] = "更新に失敗しました。"
       render 'show'
