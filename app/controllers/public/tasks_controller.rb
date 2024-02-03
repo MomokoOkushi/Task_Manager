@@ -1,5 +1,6 @@
 class Public::TasksController < ApplicationController
   before_action :authenticate_user!
+  before_action :group_has_login_user,only: [:show, :new, :create, :edit, :update, :destroy]
 
   def new
     @task = Task.new
@@ -67,8 +68,17 @@ class Public::TasksController < ApplicationController
     def new_task_params
       params.permit(:title, :detail, :start_time) #複数のテーブルに一度に保存するため、モデルの記述削除
     end
+
     def update_task_params
       #タスクモデルに紐づけられたtask_usersテーブルのカラムに保存するため、task_users_attributesを使用。
       params.require(:task).permit(:title, :detail, :start_time, task_users_attributes:[:task_status, :is_complete, :id])
+    end
+
+    def group_has_login_user
+      group = Group.find(params[:group_id])
+      unless group.group_users.exists?(user_id: current_user.id)
+        flash[:notice] = "グループに参加してから再度試してください"
+        redirect_to  public_groups_path
+      end
     end
 end
