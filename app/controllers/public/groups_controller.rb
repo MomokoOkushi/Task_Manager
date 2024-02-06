@@ -38,7 +38,7 @@ class Public::GroupsController < ApplicationController
       params.require(:group).permit(:name)
     end
 
-    def group_has_login_user
+    def group_has_login_user #ログインユーザーがグループに所属していない場合はアクセスできないようにする
       group = Group.find(params[:id])
       unless group.group_users.exists?(user_id: current_user.id)
         flash[:notice] = "グループに参加してから再度試してください"
