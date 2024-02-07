@@ -74,7 +74,7 @@ class Public::TasksController < ApplicationController
       params.require(:task).permit(:title, :detail, :start_time, task_users_attributes:[:task_status, :is_complete, :id])
     end
 
-    def group_has_login_user
+    def group_has_login_user #ログインユーザーがグループに所属していない場合にアクセスを許可しないようにする。
       group = Group.find(params[:group_id])
       unless group.group_users.exists?(user_id: current_user.id)
         flash[:notice] = "グループに参加してから再度試してください"
