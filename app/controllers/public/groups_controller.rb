@@ -40,7 +40,7 @@ class Public::GroupsController < ApplicationController
 
     def group_has_login_user #ログインユーザーがグループに所属していない場合はアクセスできないようにする
       group = Group.find(params[:id])
-      unless group.group_users.exists?(user_id: current_user.id)
+      unless group.group_users.exists?(user_id: current_user.id)  #ログインユーザーIDが指定グループのgroup_usersテーブルに存在しているか確かめる
         flash[:notice] = "グループに参加してから再度試してください"
         redirect_to  public_groups_path
       end
