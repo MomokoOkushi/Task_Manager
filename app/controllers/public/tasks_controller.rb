@@ -38,7 +38,6 @@ class Public::TasksController < ApplicationController
 
   def edit
     @task = Task.find(params[:id])
-    @group = @task.group
   end
 
   def update
