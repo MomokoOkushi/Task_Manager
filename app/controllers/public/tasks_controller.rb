@@ -25,8 +25,7 @@ class Public::TasksController < ApplicationController
 
   def show
     @task = Task.find(params[:id])
-    @group = @task.group
-    @task_statuses = TaskUser.where(user_ids: @group.users) #複数人のタスク担当者の進捗状況のデータを取得
+    @task_statuses = TaskUser.where(user_ids: @task.group.users) #複数人のタスク担当者の進捗状況のデータを取得
     @comment = Comment.new
   end
 

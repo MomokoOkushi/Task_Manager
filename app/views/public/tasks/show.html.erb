@@ -11,12 +11,12 @@
   <div class="row">
     <div class="button-box m-1">
         <div class="button">
-          <%= link_to "一覧に戻る",public_group_path(@group) %><br>
+          <%= link_to "一覧に戻る",public_group_path(@task.group) %><br>
         </div>
     </div>
     <div class="button-box m-1">
         <div class="button">
-          <%= link_to "タスクを編集する",edit_public_group_task_path(@group, @task) %>
+          <%= link_to "タスクを編集する",edit_public_group_task_path(@task.group, @task) %>
         </div>
     </div>
   </div>
