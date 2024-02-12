@@ -1,6 +1,6 @@
 class Public::GroupsController < ApplicationController
   before_action :authenticate_user!
-  before_action :group_has_login_user,only: [:show]
+  before_action :group_has_login_user,only: [:show] #グループに所属していないユーザーはグループshowページにアクセスできない。
 
   def create
     @my_groups = current_user.groups #ログインユーザーが参加しているグループ
