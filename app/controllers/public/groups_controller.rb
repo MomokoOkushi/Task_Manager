@@ -20,7 +20,7 @@ class Public::GroupsController < ApplicationController
     @groups = Group.all
     @group = Group.new
 
-    #検索フォームにパラメーターが送られた場合、検索結果をページ内に表示する
+    #検索フォームにcontentパラメーターが送られた場合、検索結果をページ内に表示する
     @content = params[:content]
     if @content
       @records = Group.search_for(params[:content])
