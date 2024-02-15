@@ -42,6 +42,8 @@
 <div class="col content-bg">
   <div class="task-box">
     <%= task.title %>
+
+    <!--管理者ログイン時にタスクの感情スコアが表示される-->
     <% if admin_signed_in? %>
       <% if task_has_negative_word?(task) %>
           <i class="fa-solid fa-heart-circle-exclamation" style="color:orange;">(<%= task.score %>)</i>
